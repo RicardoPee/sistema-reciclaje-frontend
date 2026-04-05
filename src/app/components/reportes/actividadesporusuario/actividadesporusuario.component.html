@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="title-container">
+        <h1>🏆 Leaderboard: Puntos por Usuario</h1>
+        <p>Ranking general de los usuarios más comprometidos con la recolección.</p>
+    </div>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 styled-table">
+      
+      <!-- Columna de Rango/Posición -->
+      <ng-container matColumnDef="posicion">
+        <th mat-header-cell *matHeaderCellDef> Rango </th>
+        <td mat-cell *matCellDef="let element"> 
+          <div class="rank-wrapper" *ngIf="element.rank">
+            <div class="rank-circle" [ngClass]="'rank-' + element.rank">#{{ element.rank }}</div>
+            <mat-icon *ngIf="element.rank <= 3" class="medal-icon" [ngClass]="'medal-' + element.rank">emoji_events</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Eco-Guerrero </th>
+        <td mat-cell *matCellDef="let element"> <strong>&#64;{{element.username}}</strong> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actividades">
+        <th mat-header-cell *matHeaderCellDef> Total Actividades </th>
+        <td mat-cell *matCellDef="let element"> {{element.numeroactividades}} registros </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="puntos">
+        <th mat-header-cell *matHeaderCellDef> Puntos de Recompensa </th>
+        <td mat-cell *matCellDef="let element" class="points-cell"> 
+          <span class="points-badge">{{element.total_puntos}} pts</span> 
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[15, 30, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>

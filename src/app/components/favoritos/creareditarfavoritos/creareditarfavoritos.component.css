@@ -1,0 +1,28 @@
+h1 {
+    color: #2c3e50;
+    font-family: 'Gabarito', sans-serif;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    text-align: left;
+    padding-left: 200px;
+    
+}
+
+mat-form-field{
+    width: 60%;
+}
+
+.custom-button {
+    background-color: rgb(93, 166, 59);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: 'Gabarito', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-left: 160px;
+    padding-top: 30px;    
+}

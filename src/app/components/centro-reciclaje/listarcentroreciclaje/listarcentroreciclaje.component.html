@@ -1,0 +1,65 @@
+<div class="page-container">
+  <!-- Título y Buscador -->
+  <div class="header-container">
+    <h1>Centros de Reciclaje</h1>
+    <div class="search-bar">
+      <mat-icon>search</mat-icon>
+      <input type="text" [(ngModel)]="searchText" (input)="filtrarCentros()" placeholder="Buscar por distrito o dirección...">
+    </div>
+  </div>
+
+  <!-- Mapa interactivo con Leaflet -->
+
+  <div class="map-container" id="map"></div>
+  <!-- Mapa de Leaflet -->
+  <div class="cards-containermax">
+    <!-- Contenedor de tarjetas -->
+    <div class="cards-container">
+      <mat-card *ngFor="let element of pagedData" class="card">
+        
+        <!-- Acciones: Editar y Eliminar -->
+        <div class="card-actions" *ngIf="isAdmi()">
+          <a [routerLink]="['ediciones',element.idCentroReciclaje]" class="action-btn edit-btn" title="Editar">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button class="action-btn delete-btn" (click)="eliminar(element.idCentroReciclaje)" title="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <!-- Parte inferior: Dirección -->
+        <div class="direccion">
+          {{ element.direccion }}
+        </div>
+
+        <!-- Mostrar coordenadas de latitud y longitud -->
+        <div class="location">
+          <button
+            mat-button
+            class="view-map-btn"
+            (click)="showOnMap(element.latitud, element.longitud)"
+          >
+            <mat-icon>place</mat-icon> Ver mapa
+          </button>
+          
+          <button 
+             *ngIf="isCliente()"
+             mat-button 
+             class="fav-btn" 
+             [ngClass]="{'is-favorite': element.isFavorite}" 
+             (click)="toggleFavorito(element)">
+             <mat-icon>{{ element.isFavorite ? 'star' : 'star_outline' }}</mat-icon>
+             {{ element.isFavorite ? 'Eliminar Favorito' : 'Guardar Favorito' }}
+          </button>
+        </div>
+      </mat-card>
+    </div>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="centros.length"
+    [pageSize]="10"
+    [pageSizeOptions]="dynamicPageSizeOptions"
+    aria-label="Select page"
+  ></mat-paginator>
+</div>

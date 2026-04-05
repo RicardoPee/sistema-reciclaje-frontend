@@ -1,0 +1,128 @@
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Stop pushing to the right */
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #000000;
+    margin-top: 40px;
+    margin-bottom: 35px;
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 20px 0; 
+    margin-bottom: 20px;
+    background-color: transparent; /* No un recuadro gigante detrás */
+}
+.location a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Asegura que el color del enlace sea heredado */
+}
+/* Tarjetas */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 320px; 
+    background-color: #ffffff; /* BLANCO */
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* Sombra elegante */
+    padding: 20px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    position: relative;
+}
+
+/* Efecto hover */
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Información */
+.info {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 8px;
+}
+.ubi{
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin-top: 10px;
+}
+
+.info p {
+    margin: 0;
+}
+
+/* Ícono de eliminar */
+.delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #000000;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+/* Dirección */
+.direccion {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: #27ae60;
+    color: white;
+    padding: 8px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -10px;
+}
+
+/* Ubicación */
+.location {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0px;
+}
+
+
+
+.location button {
+    
+    background-color: #86d7a8;
+    color: rgb(0, 0, 0);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+.location button:hover {
+    background-color: #2980b9;
+}
+
+/* Paginador debajo de las tarjetas */
+.paginator-container {
+    background-color: #dfe6e9;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+mat-paginator {
+    background-color: #dfe6e9; /* Fondo verde claro */
+    border-radius: 10px;
+}

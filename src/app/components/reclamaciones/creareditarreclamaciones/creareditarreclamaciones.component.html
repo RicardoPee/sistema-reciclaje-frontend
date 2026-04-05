@@ -1,0 +1,53 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div>
+    <h1>{{ edicion ? "Actualizar reclamacion" : "Registrar reclamacion" }}</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" />
+        <mat-error *ngIf="form.get('hcodigo')?.hasError('required')">
+          El codigo es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br /> -->
+
+      <div *ngIf="isAdmi()">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <mat-select formControlName="husuario">
+            @for (u of listaUsuarios; track u) {
+            <mat-option [value]="u.idUser">{{ u.username }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('husuario')?.hasError('required')">
+            Asignar un usuario es obligatorio
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Seleccionar Recompensa</mat-label>
+        <mat-select formControlName="hrecompensa">
+          @for (r of listaRecompensas; track r) {
+          <mat-option [value]="r.idRecompensas">{{
+            r.nombreRecompensa
+          }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('hrecompensa')?.hasError('required')">
+          Seleccionar una recompensa es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <div>
+        <button mat-flat-button class="custom-button">
+          {{ edicion ? "ACTUALIZAR" : "RECLAMAR" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

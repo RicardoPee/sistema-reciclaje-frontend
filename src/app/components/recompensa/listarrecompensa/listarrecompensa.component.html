@@ -1,0 +1,86 @@
+<div class="rewards-page">
+  <div class="rewards-header">
+    <h1>🎁 Recompensas Ecológicas</h1>
+    <p class="rewards-sub">Canjea tus puntos por beneficios exclusivos</p>
+    <a *ngIf="isAdmi()" routerLink="nuevo" class="add-btn">
+      <mat-icon>add_circle</mat-icon> Nueva Recompensa
+    </a>
+  </div>
+
+  <div class="cards-grid">
+    <div *ngFor="let element of pagedData" class="reward-card"
+         [class.agotada]="element.stock === 0">
+
+      <!-- BADGE STOCK -->
+      <div class="stock-badge"
+           [class.badge-agotado]="element.stock === 0"
+           [class.badge-bajo]="element.stock > 0 && element.stock <= 5"
+           [class.badge-ilimitado]="element.stock === -1"
+           [class.badge-ok]="element.stock > 5">
+        <mat-icon>{{ element.stock === 0 ? 'block' : element.stock === -1 ? 'all_inclusive' : 'inventory_2' }}</mat-icon>
+        <span *ngIf="element.stock === 0">AGOTADO</span>
+        <span *ngIf="element.stock === -1">Ilimitado</span>
+        <span *ngIf="element.stock > 0">{{ element.stock }} disponibles</span>
+      </div>
+
+      <!-- Cuerpo -->
+      <div class="reward-icon">🏆</div>
+      <h2 class="reward-name">{{ element.nombreRecompensa }}</h2>
+      <p class="reward-desc">{{ element.descripcionRecompensa }}</p>
+
+      <!-- Barra de stock visual -->
+      <div class="stock-bar-container" *ngIf="element.stock > 0 && element.stock !== -1">
+        <div class="stock-bar"
+             [class.stock-low]="element.stock <= 5"
+             [style.width.%]="Math.min(element.stock * 5, 100)">
+        </div>
+        <span class="stock-pct">{{ element.stock }} restantes</span>
+      </div>
+
+      <div class="reward-meta">
+        <div class="meta-item cost">
+          <mat-icon>eco</mat-icon>
+          <strong>{{ element.costoPuntos }} pts</strong>
+        </div>
+        <div class="meta-item expiry">
+          <mat-icon>event</mat-icon>
+          <span>Vence: {{ element.fechaVencimiento | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+
+      <div class="reward-actions">
+        <!-- ADMI: editar/borrar -->
+        <button mat-icon-button class="action-delete" *ngIf="isAdmi()" (click)="eliminar(element.idRecompensas)" title="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button class="action-edit" *ngIf="isAdmi()" [routerLink]="['ediciones', element.idRecompensas]" title="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- CLIENTE: canjear o AGOTADO -->
+        <button *ngIf="isCliente() && element.stock !== 0"
+                class="canjear-btn"
+                (click)="reclamarRecompensa(element)"
+                mat-flat-button>
+          <mat-icon>card_giftcard</mat-icon>
+          ¡CANJEAR!
+        </button>
+
+        <button *ngIf="isCliente() && element.stock === 0"
+                class="agotado-btn"
+                disabled
+                mat-flat-button>
+          <mat-icon>block</mat-icon>
+          AGOTADO
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <mat-paginator
+    [length]="recompensas.length"
+    [pageSize]="20"
+    [pageSizeOptions]="[20, 50, 100]"
+    aria-label="Select page">
+  </mat-paginator>
+</div>

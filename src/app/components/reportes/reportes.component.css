@@ -1,0 +1,85 @@
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 30px;
+  margin-left: 300px; /* Espacio para Sidebar */
+}
+
+.dashboard-header h1 {
+  font-family: 'Gabarito', sans-serif;
+  font-size: 2.8rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.dashboard-header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.reports-container {
+  margin-left: 280px; /* Apartar sidebar */
+  padding: 0 40px;
+  max-width: 1500px;
+}
+
+.tab-content {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* En la lógica de Tabs, cada widget toma todo el ancho y alto que quiera */
+.widget.full {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 35px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #ebedef;
+  width: 100%;
+}
+
+/* ========================================================
+   GLOBAL WIDGET OVERRIDES
+   Se eliminan las restricciones máximas de Chart.js
+   ======================================================== */
+
+::ng-deep .widget.full h1 {
+  font-size: 1.8rem !important;
+  margin: 0 0 25px 0 !important;
+  padding: 0 0 15px 0 !important;
+  border-bottom: 2px solid #ecf0f1 !important;
+  color: #2c3e50 !important;
+  text-transform: capitalize !important;
+  text-align: left !important;
+  letter-spacing: normal !important;
+}
+
+::ng-deep .widget.full .container {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+::ng-deep .widget.full canvas {
+  margin: 0 auto;
+  /* Ya no hay max-height, Chart.js tomará lo que necesite! */
+}
+
+/* Estilos de customización visual para Angular Material Tabs (Opcional) */
+::ng-deep .mat-mdc-tab-labels {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Gabarito', sans-serif;
+  color: #2c3e50;
+}

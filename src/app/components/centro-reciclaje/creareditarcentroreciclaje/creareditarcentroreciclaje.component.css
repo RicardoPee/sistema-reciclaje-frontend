@@ -1,0 +1,77 @@
+h1 {
+  color: #2c3e50;
+  font-family: 'Gabarito', sans-serif;
+  font-size: 2.2rem;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.custom-button {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-family: 'Gabarito', sans-serif;
+  padding: 10px 40px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+.custom-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+/* Estilo del contenedor principal para centrar el mapa */
+.map-container {
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 40px;
+  width: 100%;
+  
+}
+
+
+/* Ocultamos el checkbox pero lo mantenemos en el formulario */
+.hidden-checkbox {
+  display: none;
+}
+
+/* Estilos para el ícono del corazón */
+.favorite-icon-container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 80px;
+  margin-bottom: 15px;
+}
+
+.favorite-icon {
+  font-size: 25px;
+  color: #9b0335; /* Color del corazón */
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+/* Estilo para el texto */
+.favorite-icon-container span {
+  font-size: 16px;
+}
+
+/* Opcional: Estilos para el hover del ícono */
+.favorite-icon:hover {
+  color: #d81b60;
+}

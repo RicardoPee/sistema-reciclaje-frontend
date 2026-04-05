@@ -1,0 +1,268 @@
+.page-container {
+    margin: 0 auto;
+    padding: 20px 40px;
+    font-family: 'Arial', sans-serif;
+    max-width: 1300px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#map {
+  height: 450px;
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2d3436;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    margin-right: 60px;
+}
+.map-container {
+    margin-bottom: 30px;
+    background-color: #f1f1f1;
+    border-radius: 12px;
+    height: 450px; 
+    width: 100%; 
+    overflow: hidden;
+    border: 1px solid #f1f2f6; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+    display: flex;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Columnas adaptativas */
+    gap: 15px;
+    justify-items: center;
+    padding: 15px 0;
+    margin-bottom: 40px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra más sutil y premium */
+    padding: 20px;
+    height: auto;
+    min-height: 160px;
+    width: 100%;
+    position: relative;
+    border: 1px solid #f1f2f6; /* Borde muy suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(46, 204, 113, 0.2); /* Sombra verde difusa al hacer hover */
+}
+
+/* Información */
+.info {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2d3436;
+    margin-bottom: 8px;
+}
+
+.info p {
+    margin: 0;
+}
+
+/* Ícono de corazón */
+.heart-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #bdc3c7;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.heart-icon:hover {
+    color: #e74c3c; /* Color rojo brillante en hover */
+    transform: scale(1.1);
+}
+
+/* Dirección */
+.direccion {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(135deg, #27ae60, #2ecc71); /* Gradiente moderno */
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: auto;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
+}
+
+
+/* Ubicación */
+/* Container and Actions */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 30px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-bar mat-icon {
+  color: #94a3b8;
+  margin-right: 8px;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #334155;
+  background: transparent;
+}
+
+/* Card overrides */
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.fav-btn, .view-map-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  gap: 4px;
+}
+
+.view-map-btn {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.fav-btn {
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.fav-btn.is-favorite {
+  color: #f59e0b !important;
+  background: #fef3c7 !important;
+  border-color: #fbd38d !important;
+}
+
+.fav-btn mat-icon {
+  margin: 0 !important;
+}
+
+.fav-btn.is-favorite mat-icon {
+  color: #f59e0b !important;
+}
+
+.location button {
+    margin-top: 15px;
+    background-color: #ffffff;
+    color: #27ae60;
+    padding: 8px 16px;
+    font-weight: bold;
+    border: 2px solid #27ae60;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.location button:hover {
+    background-color: #27ae60;
+    color: #ffffff;
+    transform: scale(1.02);
+}
+.cards-containermax {
+    width: 100%;
+}
+/* Acciones (Editar/Eliminar) ordenadas */
+.card-actions {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    gap: 8px;
+    background-color: white;
+    padding: 6px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.edit-btn {
+    color: #3498db;
+    background-color: #ebf5fb;
+}
+
+.edit-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.delete-btn {
+    color: #e74c3c;
+    background-color: #fdedec;
+}
+
+.delete-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+mat-paginator {
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}

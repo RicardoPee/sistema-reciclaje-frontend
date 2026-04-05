@@ -1,0 +1,39 @@
+<div class="page-wrapper">
+  <div *ngIf="isAdmi()">
+    <div class="page-header">
+      <h1><mat-icon class="header-icon">favorite</mat-icon> Centros Favoritos</h1>
+      <a [routerLink]="['nuevo']" class="btn-new">
+        <mat-icon>add</mat-icon> Nuevo Favorito
+      </a>
+    </div>
+
+    <div class="claims-grid">
+      <div class="claim-card" *ngFor="let element of pagedData">
+        <div class="claim-icon">
+          <mat-icon>recycling</mat-icon>
+        </div>
+        <div class="claim-info">
+          <h3 class="claim-reward">{{ element.centroReciclaje.direccion }}</h3>
+          <div class="claim-meta">
+            <span class="meta-item"><mat-icon>person</mat-icon>{{ element.user.username }}</span>
+          </div>
+        </div>
+        <div class="item-actions">
+          <button class="btn-action btn-edit" [routerLink]="['ediciones', element.idFavorito]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="btn-action btn-delete" (click)="eliminar(element.idFavorito)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <mat-paginator
+      [length]="favoritos.length"
+      [pageSize]="20"
+      [pageSizeOptions]="[20, 50, 100]"
+      aria-label="Paginación">
+    </mat-paginator>
+  </div>
+</div>

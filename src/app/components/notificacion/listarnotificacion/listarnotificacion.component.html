@@ -1,0 +1,61 @@
+<div class="inbox-wrapper">
+  <div class="inbox-header">
+    <div class="header-left">
+      <h1>📥 Bandeja de Notificaciones</h1>
+      <span class="badge-unread">{{ notificaciones.length }} Totales</span>
+    </div>
+    <div class="header-right">
+      <button mat-stroked-button class="mark-all-btn" (click)="marcarTodoComoLeido()">
+        <mat-icon>done_all</mat-icon> Leer todo
+      </button>
+      <button mat-stroked-button class="delete-all-btn" (click)="eliminarTodas()">
+        <mat-icon>delete_sweep</mat-icon> Limpiar todo
+      </button>
+    </div>
+  </div>
+
+  <div class="inbox-feed">
+    <div class="notification-item" *ngFor="let element of pagedData" [class.unread]="!isLeido(element.idNotificaciones)">
+      <div class="noti-indicator"></div>
+      
+      <!-- Icono contextual básico dependiendo del mensaje -->
+      <div class="noti-icon">
+        <mat-icon *ngIf="element.mensaje.includes('punto') || element.mensaje.includes('canje')">redeem</mat-icon>
+        <mat-icon *ngIf="element.mensaje.includes('Bienvenido')">waving_hand</mat-icon>
+        <mat-icon *ngIf="!element.mensaje.includes('punto') && !element.mensaje.includes('canje') && !element.mensaje.includes('Bienvenido')">notifications</mat-icon>
+      </div>
+      
+      <div class="noti-content">
+        <div class="noti-date">{{ element.fecha | date:'mediumDate' }}</div>
+        <p class="noti-message">{{ element.mensaje }}</p>
+      </div>
+
+      <div class="noti-actions">
+        <!-- Acciones Admi -->
+        <button mat-icon-button color="warn" *ngIf="isAdmi()" (click)="eliminar(element.idNotificaciones)" title="Eliminar del sistema">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" *ngIf="isAdmi()" [routerLink]="['ediciones', element.idNotificaciones]" title="Editar notificación">
+          <mat-icon>edit</mat-icon>
+        </button>
+        
+        <!-- Acción Usuario: "Marcar como leído" iterativo UX -->
+        <button mat-icon-button class="action-btn" *ngIf="!isAdmi() && !isLeido(element.idNotificaciones)" (click)="marcarComoLeido(element.idNotificaciones)" title="Marcar como leído">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+        <!-- Acción Usuario: Eliminar de su vista -->
+        <button mat-icon-button class="action-btn" *ngIf="!isAdmi()" (click)="eliminar(element.idNotificaciones)" title="Eliminar notificación" style="color: #ef4444 !important;">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <mat-paginator
+    [length]="notificaciones.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50]"
+    class="inbox-paginator"
+    aria-label="Paginación del Inbox">
+  </mat-paginator>
+</div>

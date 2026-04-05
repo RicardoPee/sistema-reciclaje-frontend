@@ -1,0 +1,62 @@
+<div class="noticia-form-container">
+  <div class="form-header">
+    <div class="form-icon">📰</div>
+    <div>
+      <h1>{{ edicion ? "Actualizar Noticia" : "Publicar Noticia" }}</h1>
+      <p class="form-subtitle">{{ edicion ? "Modifica los datos de la noticia" : "Publica información para tus clientes" }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (submit)="insertar()" class="noticia-form">
+
+    <mat-form-field class="full-width">
+      <mat-label>Título de la Noticia</mat-label>
+      <input matInput formControlName="htitulo" placeholder="Ej: Campaña especial: el plástico vale el doble hoy" />
+      <mat-icon matSuffix>title</mat-icon>
+      <mat-error *ngIf="form.get('htitulo')?.hasError('required')">El título es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Contenido</mat-label>
+      <textarea matInput formControlName="hinformacion" rows="4"
+        placeholder="Describe la noticia con detalle..."></textarea>
+      <mat-icon matSuffix>article</mat-icon>
+      <mat-error *ngIf="form.get('hinformacion')?.hasError('required')">El contenido es obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- SELECTOR DE CENTRO — la magia está aquí -->
+    <div class="smart-notify-box">
+      <div class="smart-header">
+        <mat-icon class="notify-icon">notifications_active</mat-icon>
+        <div>
+          <h3>Notificación Automática <span class="badge-auto">AUTO</span></h3>
+          <p>Si seleccionas un centro, todos los clientes que lo tengan en <strong>Favoritos</strong> recibirán una notificación automáticamente.</p>
+        </div>
+      </div>
+
+      <mat-form-field class="full-width">
+        <mat-label>Centro de Reciclaje Relacionado (opcional)</mat-label>
+        <mat-select formControlName="hcentroReciclaje" [compareWith]="compareObjects">
+          <mat-option [value]="null">— Sin centro específico —</mat-option>
+          <mat-option *ngFor="let centro of centros; trackBy: trackByCentro" [value]="centro">
+            <mat-icon style="font-size:16px; margin-right:4px;">recycling</mat-icon>
+            {{ centro.direccion }}
+          </mat-option>
+        </mat-select>
+        <mat-hint>
+          <span *ngIf="form.value.hcentroReciclaje">
+            🔔 Se notificará a todos los clientes que tienen este centro como favorito.
+          </span>
+          <span *ngIf="!form.value.hcentroReciclaje">Opcional: selecciona para disparar notificaciones automáticas.</span>
+        </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-flat-button class="submit-btn" type="submit">
+        <mat-icon>{{ edicion ? 'save' : 'send' }}</mat-icon>
+        {{ edicion ? "ACTUALIZAR" : "PUBLICAR NOTICIA" }}
+      </button>
+    </div>
+  </form>
+</div>

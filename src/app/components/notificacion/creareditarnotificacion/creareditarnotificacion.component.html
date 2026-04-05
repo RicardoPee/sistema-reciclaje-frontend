@@ -1,0 +1,47 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div>
+    <h1>
+      {{ edicion ? "Actualizar notificacion" : "Registrar notificacion" }}
+    </h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <textarea matInput formControlName="hcodigo"></textarea>
+        <mat-error *ngIf="form.get('hcodigo')?.hasError('required')">
+          El codigo es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br /> -->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Mensaje</mat-label>
+        <input matInput placeholder="XXX" formControlName="hmensaje" />
+        <mat-error *ngIf="form.get('hmensaje')?.hasError('required')">
+          El mensaje es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <!-- <br />
+      <mat-form-field>
+        <mat-label>Fecha Actual</mat-label>
+        <input matInput formControlName="hfecha" readonly/>
+        <mat-datepicker-toggle
+          matIconSuffix
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('hfecha')?.hasError('required')">
+          La fecha es obligatoria
+        </mat-error>
+      </mat-form-field> -->
+      <br />
+      <div>
+        <button mat-flat-button class="custom-button">
+          {{ edicion ? "ACTUALIZAR" : "REGISTRAR" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

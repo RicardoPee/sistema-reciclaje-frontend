@@ -1,0 +1,45 @@
+<div class="container" style="text-align: center" >
+  <div class="return">
+    <button mat-icon-button   (click)=" NavigateToReturn()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div> 
+  <div class="form">
+    <div class="logo"></div>
+    <h2>Inicie sesión</h2>
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label>
+      <input matInput placeholder="Ej: juan.garcia" autocomplete="username" [(ngModel)]="username" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        placeholder="Ingresa tu contraseña"
+        autocomplete="current-password"
+        [(ngModel)]="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="togglePasswordVisibility()"
+        type="button"
+      >
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      
+    </mat-form-field>
+    <br />
+    <button mat-raised-button class="custom-button " (click)="login()">INICIAR SESION</button>
+    <div class="register-link">
+      ¿No tienes cuenta? 
+      <button  class="recycle-button" (click)="navigateToRegister()">
+        Crea una cuenta gratis
+      </button>
+    </div>
+       
+    </div>
+    <div class="right-image"></div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>{{ edicion ? "Actualizar centro de reciclaje" : 'Registrar centro de reciclaje' }}</h1>
+
+  <form [formGroup]="form" (submit)="insertar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="hdireccion" placeholder="Ej: Av. La Marina 123, Lima" />
+      <mat-error *ngIf="form.get('hdireccion')?.hasError('required')">
+        La dirección es obligatoria
+      </mat-error>
+    </mat-form-field>
+
+      <p style="text-align: center; color: #555; margin-bottom: 20px;">Haz clic en el mapa para ubicar automáticamente las coordenadas del centro de reciclaje.</p>
+      <!-- Contenedor del Mapa -->
+      <div id="formMap" style="height: 650px; width: 100%; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
+
+      <div style="display: flex; gap: 10px;">
+        <mat-form-field class="example-full-width" style="flex: 1;">
+          <mat-label>Latitud Generada</mat-label>
+          <input matInput formControlName="hlatitud" placeholder="Ej: -12.1040489" readonly />
+          <mat-error *ngIf="form.get('hlatitud')?.hasError('required')">
+            Haz clic en el mapa para capturar latitud.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" style="flex: 1;">
+          <mat-label>Longitud Generada</mat-label>
+          <input matInput formControlName="hlongitud" placeholder="Ej: -76.9654806" readonly />
+          <mat-error *ngIf="form.get('hlongitud')?.hasError('required')">
+            Haz clic en el mapa para capturar longitud.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    <div>
+      <button mat-flat-button class="custom-button">
+        {{ edicion ? 'ACTUALIZAR' : 'REGISTRAR' }}
+      </button>
+    </div>
+
+  </form>
+</div>

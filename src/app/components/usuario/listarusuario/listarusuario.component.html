@@ -1,0 +1,99 @@
+<div class="page-wrapper">
+
+  <!-- VISTA ADMI: grid de 3 columnas -->
+  <div *ngIf="isAdmi()">
+    <div class="page-header">
+      <h1>Gestión de Usuarios</h1>
+      <p class="subtitle">{{ usuarios.length }} usuarios registrados en el sistema</p>
+    </div>
+
+    <div class="user-grid">
+      <div class="user-card" *ngFor="let element of pagedData">
+        <div class="user-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="user-details">
+          <h3 class="user-name">{{ element.nombres }} {{ element.apellidos }}</h3>
+          <span class="user-role" [class.role-admi]="element.rol.nombreRol === 'ADMI'">
+            {{ element.rol.nombreRol }}
+          </span>
+          <div class="user-meta">
+            <span><mat-icon class="meta-icon">alternate_email</mat-icon>{{ element.username }}</span>
+            <span><mat-icon class="meta-icon">email</mat-icon>{{ element.correo }}</span>
+            <span><mat-icon class="meta-icon">cake</mat-icon>{{ element.edad }} años</span>
+          </div>
+        </div>
+        <div class="user-actions">
+          <button class="btn-action btn-delete" (click)="eliminar(element.idUser)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button class="btn-action btn-edit" [routerLink]="['ediciones', element.idUser]" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <mat-paginator
+      [length]="usuarios.length"
+      [pageSize]="20"
+      [pageSizeOptions]="[20, 50, 100]"
+      aria-label="Paginación de usuarios">
+    </mat-paginator>
+  </div>
+
+  <!-- VISTA CLIENTE: perfil propio -->
+  <div *ngIf="!isAdmi()" class="dark-profile-container">
+    <div class="page-header dark-header">
+      <h1>Mi Perfil Ecológico</h1>
+      <p class="subtitle">Gestiona tu información y visualiza tus datos de reciclaje</p>
+    </div>
+    <div *ngFor="let element of dataSource.data" class="profile-card dark-card">
+      <div class="dark-card-header">
+        <div class="profile-avatar dark-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="header-titles">
+          <h2>{{ element.nombres }} {{ element.apellidos }}</h2>
+          <span class="badge-role">{{ getRango(element.puntosAcumulados) }}</span>
+        </div>
+      </div>
+      
+      <div class="profile-info dark-info">
+        <div class="profile-grid">
+          <div class="profile-field">
+            <span class="field-label">Usuario</span>
+            <span class="field-value">&#64;{{ element.username }}</span>
+          </div>
+          <div class="profile-field">
+            <span class="field-label">Correo</span>
+            <span class="field-value">{{ element.correo }}</span>
+          </div>
+          <div class="profile-field">
+            <span class="field-label">Edad</span>
+            <span class="field-value">{{ element.edad }} años</span>
+          </div>
+          <div class="profile-field">
+            <span class="field-label">Distrito</span>
+            <span class="field-value">{{ element.distrito }}</span>
+          </div>
+          <div class="profile-field">
+            <span class="field-label">Género</span>
+            <span class="field-value">{{ element.genero }}</span>
+          </div>
+          <div class="profile-field">
+            <span class="field-label">Teléfono</span>
+            <span class="field-value">{{ element.telefono }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-action dark-btn-edit" [routerLink]="['ediciones', element.idUser]" aria-label="Editar perfil">
+          <mat-icon>edit</mat-icon>
+          Modificar Mis Datos
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

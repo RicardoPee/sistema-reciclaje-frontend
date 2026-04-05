@@ -1,0 +1,108 @@
+.podium-container {
+    padding: 40px;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 80px);
+    font-family: 'Inter', sans-serif;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title-container h1 {
+    font-family: 'Gabarito', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.title-container p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+.podium-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    width: 280px;
+    transition: transform 0.3s ease;
+}
+
+.podium-card:hover {
+    transform: translateY(-10px);
+}
+
+.rank-badge {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 4px solid #f8fafc;
+}
+
+/* Configuramos alturas del podio */
+/* En vez de dorado lo hacemos temático "Populares/Agua" */
+.rank-1 { height: 350px; z-index: 3; background: linear-gradient(145deg, #ffffff, #f0fdfa); border: 2px solid #5eead4;}
+.rank-2 { height: 300px; z-index: 2; border: 2px solid #e2e8f0; }
+.rank-3 { height: 260px; z-index: 1; border: 2px solid #ffedd5; }
+
+.medal-icon {
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
+    display: block;
+}
+
+.medal-1 { color: #0d9488; text-shadow: 0 4px 6px rgba(13, 148, 136, 0.3); } 
+.medal-2 { color: #64748b; } 
+.medal-3 { color: #ea580c; } 
+
+.podium-card h2 {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.address {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 10px 0 20px 0;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}

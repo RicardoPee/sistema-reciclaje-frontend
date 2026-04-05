@@ -1,0 +1,28 @@
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1><mat-icon class="header-icon">category</mat-icon> Tipos de Actividad</h1>
+    <a [routerLink]="['nuevo']" class="btn-new">
+      <mat-icon>add</mat-icon> Nuevo Tipo
+    </a>
+  </div>
+
+  <div class="items-grid">
+    <div class="item-card" *ngFor="let element of dataSource.data">
+      <div class="item-badge">
+        <mat-icon>directions_run</mat-icon>
+      </div>
+      <div class="item-info">
+        <h3>{{ element.descripcion }}</h3>
+        <span class="item-id">ID: {{ element.id_tipo_actividad }}</span>
+      </div>
+      <div class="item-actions">
+        <button class="btn-action btn-edit" [routerLink]="['ediciones', element.id_tipo_actividad]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="btn-action btn-delete" (click)="eliminar(element.id_tipo_actividad)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

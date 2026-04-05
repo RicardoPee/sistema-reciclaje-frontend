@@ -1,0 +1,33 @@
+.container {
+    padding: 20px 40px;
+    background-color: #f8fafc;
+    min-height: calc(100vh - 80px);
+    font-family: 'Inter', sans-serif;
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title-container h1 {
+    font-family: 'Gabarito', sans-serif;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+}
+
+.title-container p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+.chart-container {
+    background: white;
+    max-width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}

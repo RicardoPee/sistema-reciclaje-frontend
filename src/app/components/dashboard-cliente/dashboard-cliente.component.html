@@ -1,0 +1,174 @@
+<div class="eco-dashboard" *ngIf="!cargando">
+
+  <!-- CABECERA -->
+  <div class="eco-header">
+    <div class="greeting">
+      <div class="avatar-circle">{{ usuario.nombres.charAt(0) }}{{ usuario.apellidos.charAt(0) }}</div>
+      <div>
+        <h1>¡Hola, {{ usuario.nombres }}! 🌱</h1>
+        <p class="district-pill"><mat-icon>location_on</mat-icon> {{ usuario.distrito }}</p>
+      </div>
+    </div>
+    <div class="rango-pill" [style.background]="rangoColor + '22'" [style.border-color]="rangoColor" [style.color]="rangoColor">
+      <mat-icon>{{ rangoIcon }}</mat-icon>
+      <span>{{ rango }}</span>
+    </div>
+  </div>
+
+  <!-- MÉTRICAS CIRCULARES -->
+  <section class="metrics-section">
+    <h2 class="section-title">Tu Impacto Ecológico Este Mes 🌍</h2>
+    <div class="gauges-grid">
+
+      <!-- Gauge 1: Árboles -->
+      <div class="gauge-card">
+        <div class="gauge-wrapper">
+          <svg viewBox="0 0 120 120" class="gauge-svg">
+            <circle class="track" cx="60" cy="60" r="54"/>
+            <circle class="progress arboles" cx="60" cy="60" r="54"
+              [style.stroke-dasharray]="CIRCUMFERENCE"
+              [style.stroke-dashoffset]="getDashOffset(circuloArboles)"/>
+          </svg>
+          <div class="gauge-center">
+            <span class="gauge-emoji">🌳</span>
+            <span class="gauge-value">{{ arbolesSalvados }}</span>
+            <span class="gauge-unit">árboles</span>
+          </div>
+        </div>
+        <div class="gauge-label">Árboles Salvados</div>
+        <div class="gauge-sub">Equivalente a tu reciclaje total</div>
+      </div>
+
+      <!-- Gauge 2: CO2 -->
+      <div class="gauge-card">
+        <div class="gauge-wrapper">
+          <svg viewBox="0 0 120 120" class="gauge-svg">
+            <circle class="track" cx="60" cy="60" r="54"/>
+            <circle class="progress co2" cx="60" cy="60" r="54"
+              [style.stroke-dasharray]="CIRCUMFERENCE"
+              [style.stroke-dashoffset]="getDashOffset(circuloCO2)"/>
+          </svg>
+          <div class="gauge-center">
+            <span class="gauge-emoji">💨</span>
+            <span class="gauge-value">{{ co2Evitado }}</span>
+            <span class="gauge-unit">kg CO₂</span>
+          </div>
+        </div>
+        <div class="gauge-label">CO₂ Evitado</div>
+        <div class="gauge-sub">Gracias a tu reciclaje</div>
+      </div>
+
+      <!-- Gauge 3: Progreso de Rango -->
+      <div class="gauge-card">
+        <div class="gauge-wrapper">
+          <svg viewBox="0 0 120 120" class="gauge-svg">
+            <circle class="track" cx="60" cy="60" r="54"/>
+            <circle class="progress rango-prog" cx="60" cy="60" r="54"
+              [style.stroke-dasharray]="CIRCUMFERENCE"
+              [style.stroke-dashoffset]="getDashOffset(circuloRango)"
+              [style.stroke]="rangoColor"/>
+          </svg>
+          <div class="gauge-center">
+            <mat-icon [style.color]="rangoColor" class="rango-mat-icon">{{ rangoIcon }}</mat-icon>
+            <span class="gauge-value">{{ puntos }}</span>
+            <span class="gauge-unit">pts</span>
+          </div>
+        </div>
+        <div class="gauge-label">Tu Rango: {{ rango }}</div>
+        <div class="gauge-sub" *ngIf="puntosParaSiguiente > 0">
+          {{ puntosParaSiguiente }} pts para {{ rangoNext }}
+        </div>
+        <div class="gauge-sub" *ngIf="puntosParaSiguiente === 0">¡Nivel máximo! 🏆</div>
+      </div>
+
+      <!-- Gauge 4: Plástico -->
+      <div class="gauge-card">
+        <div class="gauge-wrapper">
+          <svg viewBox="0 0 120 120" class="gauge-svg">
+            <circle class="track" cx="60" cy="60" r="54"/>
+            <circle class="progress plastico" cx="60" cy="60" r="54"
+              [style.stroke-dasharray]="CIRCUMFERENCE"
+              [style.stroke-dashoffset]="getDashOffset(circuloPlastico)"/>
+          </svg>
+          <div class="gauge-center">
+            <span class="gauge-emoji">♻️</span>
+            <span class="gauge-value">{{ plasticoReciclado }}</span>
+            <span class="gauge-unit">kg plástico</span>
+          </div>
+        </div>
+        <div class="gauge-label">Plástico Reciclado</div>
+        <div class="gauge-sub">Del total de tus actividades</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RANKING SEMANAL DEL DISTRITO -->
+  <section class="ranking-section">
+    <div class="ranking-header">
+      <h2 class="section-title">🏆 Ranking Semanal — {{ usuario.distrito }}</h2>
+      <span class="ranking-badge" *ngIf="miPosicion > 0">Tu posición: #{{ miPosicion }}</span>
+      <span class="ranking-badge sin-pos" *ngIf="miPosicion === -1">Aún no apareces — ¡recicla!</span>
+    </div>
+
+    <div class="ranking-empty" *ngIf="ranking.length === 0">
+      <mat-icon>emoji_nature</mat-icon>
+      <p>Esta semana nadie en tu distrito ha reciclado todavía.<br>¡Sé el primero!</p>
+      <a routerLink="/actividades/nuevo" class="cta-btn">
+        <mat-icon>add_circle</mat-icon> Registrar Actividad
+      </a>
+    </div>
+
+    <ol class="ranking-list" *ngIf="ranking.length > 0">
+      <li *ngFor="let item of ranking"
+          class="ranking-item"
+          [class.es-yo]="item.username === usuario.username"
+          [class.top1]="item.posicion === 1"
+          [class.top2]="item.posicion === 2"
+          [class.top3]="item.posicion === 3">
+
+        <div class="pos-medal">{{ getMedalIcon(item.posicion) }}</div>
+
+        <div class="rank-avatar">{{ item.nombres.charAt(0) }}{{ item.apellidos.charAt(0) }}</div>
+
+        <div class="rank-info">
+          <div class="rank-name">
+            {{ item.nombres }} {{ item.apellidos }}
+            <span class="yo-tag" *ngIf="item.username === usuario.username"> tú</span>
+          </div>
+          <div class="rank-user">&commat;{{ item.username }}</div>
+        </div>
+
+        <div class="rank-stats">
+          <div class="rank-acts">
+            <mat-icon>assignment</mat-icon>
+            <span>{{ item.totalActividades }} actividades</span>
+          </div>
+          <div class="rank-pts">{{ item.totalPuntos }} pts</div>
+        </div>
+
+        <!-- Barra de progreso relativa -->
+        <div class="rank-bar-container">
+          <div class="rank-bar"
+               [style.width.%]="(item.totalActividades / ranking[0].totalActividades) * 100"
+               [class.bar-yo]="item.username === usuario.username">
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- CTA al final -->
+  <div class="cta-section" *ngIf="ranking.length > 0">
+    <a routerLink="/actividades/nuevo" class="cta-btn large">
+      <mat-icon>add_circle</mat-icon> Registrar nueva actividad de reciclaje
+    </a>
+  </div>
+
+</div>
+
+<!-- LOADING -->
+<div class="loading-state" *ngIf="cargando">
+  <div class="spin-leaf">🌿</div>
+  <p>Cargando tu dashboard ecológico...</p>
+</div>

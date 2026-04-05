@@ -1,0 +1,69 @@
+<div class="page-container">
+  <h1>Actividades</h1>
+
+  <div class="cards-container">
+    <mat-card *ngFor="let element of pagedData" class="card">
+
+      <!-- Badge de estado -->
+      <div class="estado-badge"
+           [class.pendiente]="element.estado === 'PENDIENTE'"
+           [class.aprobada]="element.estado === 'APROBADA'"
+           [class.rechazada]="element.estado === 'RECHAZADA'">
+        <mat-icon>{{ element.estado === 'APROBADA' ? 'check_circle' : element.estado === 'RECHAZADA' ? 'cancel' : 'schedule' }}</mat-icon>
+        {{ element.estado }}
+      </div>
+
+      <!-- Código de reserva -->
+      <div class="codigo-rec" *ngIf="element.codigoReserva">
+        <mat-icon>qr_code</mat-icon>
+        <span>{{ element.codigoReserva }}</span>
+      </div>
+
+      <div class="info">
+        <p><strong>Fecha:</strong> {{element.fecha_recepcion | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Puntos:</strong>
+          <span [class.puntos-pendiente]="element.estado !== 'APROBADA'">
+            {{element.puntos}}
+            <span *ngIf="element.estado === 'PENDIENTE'" class="pts-hint">(pendiente aprobación)</span>
+          </span>
+        </p>
+        <p>
+          <strong>
+            {{element.ta.descripcion === 'Invitar' ? 'Cantidad Amigos:' :
+              (element.ta.descripcion === 'Reciclar' ? 'Cantidad Botellas:' : 'Cantidad:')}}
+          </strong>
+          {{element.cantidad}}
+        </p>
+        <p class="tipo-act">
+          <mat-icon style="font-size: 18px; width: 18px; height: 18px; color: #27ae60; vertical-align: middle; margin-right: 4px;">{{ getIconForActivity(element.ta.descripcion) }}</mat-icon>
+          <strong>Tipo:</strong> {{element.ta.descripcion}}
+        </p>
+      </div>
+
+      <div *ngIf="isAdmi()" class="admin-actions">
+        <mat-icon (click)="eliminar(element.idActividad)" class="delete-icon">delete</mat-icon>
+      </div>
+
+      <div class="ubi"><p><strong>Ubicación:</strong></p></div>
+      <div class="direccion">{{ element.cr.direccion }}</div>
+
+      <div class="location">
+        <p><strong>Usuario:</strong> {{element.u.username}}</p>
+      </div>
+
+      <div class="location" *ngIf="isAdmi()">
+        <a [routerLink]="['ediciones', element.idActividad]" mat-button>
+          <mat-icon>edit</mat-icon> Editar
+        </a>
+      </div>
+
+    </mat-card>
+  </div>
+
+  <mat-paginator
+    [length]="actividades.length"
+    [pageSize]="20"
+    [pageSizeOptions]="[20, 50, 100]"
+    aria-label="Select page">
+  </mat-paginator>
+</div>

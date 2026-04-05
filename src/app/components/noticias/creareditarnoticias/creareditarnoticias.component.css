@@ -1,0 +1,121 @@
+.noticia-form-container {
+  max-width: 680px;
+  margin: 60px auto 40px;
+  padding: 0 20px;
+  font-family: 'Gabarito', sans-serif;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.form-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.form-header h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.form-subtitle {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+}
+
+.noticia-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ======== SMART NOTIFY BOX ======== */
+.smart-notify-box {
+  background: linear-gradient(135deg, #f0fdf4, #e8f5e9);
+  border: 2px solid #a8d5b5;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.smart-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.notify-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  color: #27ae60;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.smart-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-auto {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+
+.smart-header p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ======== FORM ACTIONS ======== */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #2c3e50, #1a252f) !important;
+  color: white !important;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 24px rgba(44, 62, 80, 0.3);
+  transition: all 0.2s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(44, 62, 80, 0.4);
+}

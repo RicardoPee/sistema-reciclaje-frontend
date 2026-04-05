@@ -1,0 +1,107 @@
+<div class="page-wrapper">
+  <h1>{{ edicion ? "Actualizar Actividad" : "Registrar Solicitud de Reciclaje" }}</h1>
+
+  <!-- MENSAJE INFORMATIVO SOLO PARA CLIENTES (nueva solicitud) -->
+  <div class="info-banner" *ngIf="!edicion && isCliente()">
+    <mat-icon>info</mat-icon>
+    <div>
+      <strong>¿Cómo funciona?</strong>
+      <p>Registra tu solicitud aquí. Recibirás un <strong>código único</strong> (ej: <code>REC-4F7A</code>).
+      Lleva ese código al centro de reciclaje seleccionado — el empleado verificará tus materiales y aprobará los puntos.</p>
+    </div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="form-card">
+    <form [formGroup]="form" (submit)="insertar()">
+
+      <!-- Fecha (solo ADMI) -->
+      <div *ngIf="isAdmi()">
+        <mat-form-field class="full-width">
+          <mat-label>Fecha de Recepción</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fecha" [max]="maxFecha"/>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('fecha')?.hasError('required')">La fecha es obligatoria.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Cantidad -->
+      <mat-form-field class="full-width">
+        <mat-label>Cantidad (mín. 5, máx. 100)</mat-label>
+        <input matInput placeholder="Ej: 10" formControlName="cantidad" type="number"/>
+        <mat-hint>Botellas, kg, unidades, etc.</mat-hint>
+        <mat-error *ngIf="form.get('cantidad')?.hasError('required')">La cantidad es obligatoria.</mat-error>
+        <mat-error *ngIf="form.get('cantidad')?.hasError('max')">Máximo 100 unidades por solicitud.</mat-error>
+        <mat-error *ngIf="form.get('cantidad')?.hasError('min')">Mínimo 5 unidades por solicitud.</mat-error>
+      </mat-form-field>
+
+      <!-- Tipo de Actividad -->
+      <mat-form-field class="full-width">
+        <mat-label>Tipo de Actividad</mat-label>
+        <mat-select formControlName="tipoactividad">
+          @for (m of listaTipoActividad; track m) {
+            <mat-option [value]="m.id_tipo_actividad">{{ m.descripcion }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('tipoactividad')?.hasError('required')">Selecciona un tipo.</mat-error>
+      </mat-form-field>
+
+      <!-- Centro de Reciclaje -->
+      <mat-form-field class="full-width">
+        <mat-label>Centro de Reciclaje donde irás</mat-label>
+        <mat-select formControlName="centros">
+          @for (m of listaCentros; track m) {
+            <mat-option [value]="m.idCentroReciclaje">{{ m.direccion }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('centros')?.hasError('required')">Selecciona un centro.</mat-error>
+      </mat-form-field>
+
+      <!-- Puntos estimados (calculados automáticamente) -->
+      <mat-form-field class="full-width">
+        <mat-label>Puntos que ganarás (estimado)</mat-label>
+        <input matInput formControlName="puntos" readonly/>
+        <mat-hint>Los puntos se acreditan cuando el empleado apruebe tu solicitud.</mat-hint>
+      </mat-form-field>
+
+      <!-- Usuario (solo ADMI) -->
+      <div *ngIf="isAdmi()">
+        <mat-form-field class="full-width">
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="usuarios">
+            @for (m of listaUsuarios; track m) {
+              <mat-option [value]="m.idUser">{{ m.username }}</mat-option>
+            }
+          </mat-select>
+          <mat-error *ngIf="form.get('usuarios')?.hasError('required')">Selecciona un usuario.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button class="submit-btn" type="submit">
+        <mat-icon>{{ edicion ? 'save' : 'send' }}</mat-icon>
+        {{ edicion ? "ACTUALIZAR" : "ENVIAR SOLICITUD" }}
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: Código de Reserva generado -->
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-card">
+    <div class="modal-icon">
+      <mat-icon>check_circle</mat-icon>
+    </div>
+    <h2>¡Solicitud Registrada!</h2>
+    <p>Tu código de verificación es:</p>
+    <div class="codigo-display">{{ codigoGenerado }}</div>
+    <p class="modal-instruccion">
+      Presenta este código en el centro de reciclaje seleccionado.<br>
+      El empleado verificará tus materiales y aprobará tus puntos.
+    </p>
+    <button mat-flat-button class="submit-btn" (click)="cerrarModal()">
+      <mat-icon>check</mat-icon> Entendido, ver mis actividades
+    </button>
+  </div>
+</div>

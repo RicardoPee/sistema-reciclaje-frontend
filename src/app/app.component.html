@@ -1,0 +1,226 @@
+<!-- app.component.html -->
+<div [ngClass]="{'main-container': !isWelcomePage && verificar()}">
+<ng-container *ngIf="!isWelcomePage">
+    <mat-toolbar class="custom-toolbar" *ngIf="verificar()">
+        <!-- Logo y botón de inicio -->
+        <div class="logo"></div>
+        <div class="menu-toolbar">
+            <button mat-button [routerLink]="['/noticias']" style="color: black">
+                <mat-icon>home</mat-icon> 
+                <span class="menu-text">Noticias</span>
+            </button>
+            <button mat-button [routerLink]="['/dashboard']" style="color: #27ae60; font-weight: bold;" *ngIf="isCliente()">
+                <mat-icon>eco</mat-icon> 
+                <span class="menu-text">Mi Dashboard</span>
+            </button>
+        </div>
+
+         <!-- Botón de Rol -->
+         <div class="button-rol" *ngIf="isAdmin()" >
+            <button mat-button [matMenuTriggerFor]="menuRol" style="color: black" >
+                <mat-icon>supervised_user_circle</mat-icon> 
+                <span class="noti-text">Roles</span>
+            </button>
+        </div>
+        <mat-menu #menuRol="matMenu">
+            <button mat-menu-item routerLink="/roles" >Listar</button>
+            <button mat-menu-item routerLink="/roles/nuevo" >Registrar</button>
+        </mat-menu>
+
+        <!-- Botón de Tipo de Actividad -->
+        <div class="button-tipo" *ngIf="isAdmin()">
+            <button mat-button [matMenuTriggerFor]="menuTipoActividad" style="color: black" >
+                <mat-icon>wb_auto</mat-icon>
+                <span class="noti-text">Tipo de Actividad</span>
+            </button>
+        </div>
+        <mat-menu #menuTipoActividad="matMenu">
+            <button mat-menu-item routerLink="/tipodeactividades" >Listar</button>
+            <button mat-menu-item routerLink="/tipodeactividades/nuevo" >Registrar</button>
+        </mat-menu>
+        <!-- Botón de Reclamaciones -->
+        <div class="button-tipo" *ngIf="isAdmin()">
+            <button mat-button [matMenuTriggerFor]="menuReclamaciones" style="color: black">
+                <mat-icon>new_releases</mat-icon>
+                <span class="noti-text">Reclamaciones</span>
+            </button>
+        </div>
+        <mat-menu #menuReclamaciones="matMenu">
+            <button mat-menu-item routerLink="/reclamaciones" >Listar</button>
+            <button mat-menu-item routerLink="/reclamaciones/nuevo">Registrar</button>
+        </mat-menu>
+
+         <!-- Botón de favoritos -->
+         <div class="button-favoritos" *ngIf="isAdmin()">
+            <button mat-button [matMenuTriggerFor]="menuFavoritos" style="color: black">
+                <mat-icon>favorite</mat-icon> 
+                <span class="noti-text">Centros Favoritos</span>
+            </button>
+        </div>
+        <mat-menu #menuFavoritos="matMenu">
+            <button mat-menu-item routerLink="/favoritos" >Listar</button>
+            <button mat-menu-item routerLink="/favoritos/nuevo">Registrar</button>
+        </mat-menu>
+
+        <span class="spacer"></span>
+
+        <!-- Botón de notificación -->
+        <div class="button-noti" >
+            <button mat-button [routerLink]="['/notificaciones']" style="color: black" *ngIf="isCliente()">
+                <mat-icon>notification_important</mat-icon> 
+                <span class="noti-text">Notificaciones</span>
+            </button>
+            <button mat-button [matMenuTriggerFor]="menuNotificacion" style="color: black"*ngIf="isAdmin()" >
+                <mat-icon>notification_important</mat-icon> 
+                <span class="noti-text">Notificaciones</span>
+            </button>
+        </div>
+        <mat-menu #menuNotificacion="matMenu">
+            <button mat-menu-item routerLink="/notificaciones" >Listar</button>
+            <button mat-menu-item routerLink="/notificaciones/nuevo" >Registrar</button>
+        </mat-menu>
+        <!-- Botón de Noticias -->
+        <div class="button-noticias" *ngIf="isAdmin()">
+            <button mat-button [matMenuTriggerFor]="menuNoticias" style="color: black">
+                <mat-icon>article</mat-icon> 
+                <span class="noti-text">Noticias</span>
+            </button>
+        </div>
+        <mat-menu #menuNoticias="matMenu">
+            <button mat-menu-item routerLink="/noticias/nuevo" >Registrar</button>
+        </mat-menu>
+
+         <!-- Billetera Puntos (Gamificación) -->
+         <div class="points-badge" *ngIf="isCliente()" style="margin-right: 15px;">
+            <button mat-button style="color: green; font-weight: bold; background-color: #e8f5e9; border-radius: 20px;">
+                <mat-icon>eco</mat-icon>
+                <span>Mis Puntos: {{ puntosUsuario }}</span>
+            </button>
+         </div>
+
+         <!-- Botón de Cerrar Sesión al costado de Noticias -->
+         <div class="close">
+            <button mat-icon-button [matMenuTriggerFor]="menuSalir" style="color: black">
+                <mat-icon>logout</mat-icon>
+            </button>
+            <mat-menu #menuSalir="matMenu">
+                <button mat-menu-item routerLink="/login" (click)="cerrar()">
+                    <span>Cerrar sesión</span>
+                </button>
+                <button mat-menu-item>
+                    Rol: <span>{{ role }}</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <!-- Barra lateral -->
+    <div class="sidebar" *ngIf="verificar()">
+        <!-- Menú Usuario -->
+        <div class="menu-item-group" *ngIf="isCliente() || isAdmin()">
+            <button mat-button class="main-menu-btn" [matMenuTriggerFor]="menuUsuario" *ngIf="isAdmin()">
+                <mat-icon>person</mat-icon>
+                <span class="menu-text">Usuario</span>
+            </button>
+            <button mat-button class="main-menu-btn" [routerLink]="['/usuarios']" *ngIf="isCliente()">
+                <mat-icon>person</mat-icon>
+                <span class="menu-text">Usuario</span>
+            </button>
+            <button mat-icon-button class="report-btn" [matMenuTriggerFor]="menuCantidadUsuario" *ngIf="isAdmin()" title="Reportes de Usuario">
+                <mat-icon>bar_chart</mat-icon> 
+            </button>
+        </div>
+        <mat-menu #menuUsuario="matMenu">
+            <button mat-menu-item routerLink="/usuarios" >Listar</button>
+            <button mat-menu-item routerLink="/usuarios/nuevo" >Registrar</button>
+        </mat-menu>
+        <mat-menu #menuCantidadUsuario="matMenu">
+            <button mat-menu-item routerLink="/usuarios/reportes/busquedas">Usuarios por distrito</button>
+            <button mat-menu-item routerLink="/usuarios/reportes/obtenercantidadUsuariosporDistrito">Grafica de cantidad de usuarios por distrito</button>
+        </mat-menu>
+
+        <!-- Menú Centros de Reciclaje -->
+        <div class="menu-item-group" *ngIf="isCliente() || isAdmin()">
+            <button mat-button class="main-menu-btn" [matMenuTriggerFor]="menuCentroReciclaje" *ngIf="isAdmin()">
+                <mat-icon>location_on</mat-icon>
+                <span class="menu-text">Centros</span>
+            </button>
+            <button mat-button class="main-menu-btn" [routerLink]="['/centroreciclaje']" *ngIf="isCliente()">
+                <mat-icon>location_on</mat-icon>
+                <span class="menu-text">Centros</span>
+            </button>
+            <button mat-icon-button class="report-btn" [matMenuTriggerFor]="menuCentroConsulta" *ngIf="isAdmin()" title="Reportes de Centros">
+                <mat-icon>bar_chart</mat-icon> 
+            </button>
+        </div>
+        <mat-menu #menuCentroReciclaje="matMenu">
+            <button mat-menu-item routerLink="/centroreciclaje">Listar</button>
+            <button mat-menu-item routerLink="/centroreciclaje/nuevo">Registrar</button>
+        </mat-menu>
+        <mat-menu #menuCentroConsulta="matMenu">
+            <button mat-menu-item routerLink="/centroreciclaje/reportes/mas_popular">Centro Favorito</button>
+            <button mat-menu-item routerLink="/centroreciclaje/reportes/mas-usuarios">Centro Popular</button>
+        </mat-menu>
+
+        <!-- Menú Actividad -->
+        <div class="menu-item-group">
+            <button mat-button class="main-menu-btn" [matMenuTriggerFor]="menuActividad">
+                <mat-icon>assignment</mat-icon>
+                <span class="menu-text">Actividad</span>
+            </button>
+            <button mat-icon-button class="report-btn" [matMenuTriggerFor]="menuActividadporCentro" *ngIf="isAdmin()" title="Reportes de Actividad">
+                <mat-icon>bar_chart</mat-icon> 
+            </button>
+        </div>
+        <mat-menu #menuActividad="matMenu">
+            <button mat-menu-item routerLink="/actividades" *ngIf="isAdmin() || isCliente()">Listar</button>
+            <button mat-menu-item routerLink="/actividades/nuevo" *ngIf="isAdmin() || isCliente()">Registrar</button>
+        </mat-menu>
+        <mat-menu #menuActividadporCentro="matMenu">
+            <button mat-menu-item routerLink="/actividades/reportes/actividadesporcentro">Actividades por Centro</button>
+            <button mat-menu-item routerLink="/actividades/reportes/actividadesporusuario">Actividades por Usuario</button>
+        </mat-menu>
+
+        <!-- Menu Recompensas -->
+        <div class="menu-item-group" *ngIf="isCliente() || isAdmin()">
+            <button mat-button class="main-menu-btn" [matMenuTriggerFor]="menuRecompensas" *ngIf="isAdmin()">
+                <mat-icon>star</mat-icon>
+                <span class="menu-text">Recompensas</span>
+            </button>
+            <button mat-button class="main-menu-btn" [routerLink]="['/recompensas']" *ngIf="isCliente()">
+                <mat-icon>star</mat-icon>
+                <span class="menu-text">Recompensas</span>
+            </button>
+            <button mat-icon-button class="report-btn" [matMenuTriggerFor]="menuRecRepo" *ngIf="isAdmin()" title="Reportes de Recompensas">
+                <mat-icon>bar_chart</mat-icon> 
+            </button>
+        </div>
+        <mat-menu #menuRecompensas="matMenu">
+            <button mat-menu-item routerLink="/recompensas">Listar</button>
+            <button mat-menu-item routerLink="/recompensas/nuevo">Registrar</button>
+        </mat-menu>
+        <mat-menu #menuRecRepo="matMenu">
+            <button mat-menu-item routerLink="/recompensas/reportes/cantidadrecompensas">Cantidad de recompensas reclamadas</button>
+            <button mat-menu-item routerLink="/recompensas/reportes/proxvencer">Recompensas Próximas a Vencer</button>
+        </mat-menu>
+
+        <!-- Portal Empleado (visible para EMPLEADO y ADMI) -->
+        <div class="menu-item" *ngIf="isAdmin() || isEmpleado()">
+            <button mat-button [routerLink]="['/empleado/pendientes']" style="color: #27ae60; font-weight: bold;">
+                <mat-icon>verified_user</mat-icon>
+                <span class="menu-text">Portal Empleado</span>
+            </button>
+        </div>
+
+        <!-- Icono de reciclaje -->
+        <div class="sidebar-icon">
+            <img src="https://i.ibb.co/7p63Hkt/icon.png" alt="Recycling Bin Icon" class="recycling-icon">
+        </div>
+        
+    </div>
+</ng-container>
+<!-- Contenido principal -->
+<div [ngClass]="{'content': !isWelcomePage && verificar()}">
+    <router-outlet></router-outlet>
+</div>
+</div>

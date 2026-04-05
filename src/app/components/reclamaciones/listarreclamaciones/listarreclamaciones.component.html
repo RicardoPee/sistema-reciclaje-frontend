@@ -1,0 +1,39 @@
+<div class="page-wrapper">
+  <div *ngIf="isAdmi()">
+    <div class="page-header">
+      <h1><mat-icon class="header-icon">receipt_long</mat-icon> Reclamos de Recompensas</h1>
+      <a [routerLink]="['nuevo']" class="btn-new">
+        <mat-icon>add</mat-icon> Nuevo Reclamo
+      </a>
+    </div>
+
+    <div class="claims-grid">
+      <div class="claim-card" *ngFor="let element of pagedData">
+        <div class="claim-icon">
+          <mat-icon>card_giftcard</mat-icon>
+        </div>
+        <div class="claim-info">
+          <h3 class="claim-reward">{{ element.recompensa.nombreRecompensa }}</h3>
+          <div class="claim-meta">
+            <span class="meta-item"><mat-icon>person</mat-icon>{{ element.usuario.username }}</span>
+          </div>
+        </div>
+        <div class="item-actions">
+          <button class="btn-action btn-edit" [routerLink]="['ediciones', element.idReclamacion]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="btn-action btn-delete" (click)="eliminar(element.idReclamacion)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <mat-paginator
+      [length]="reclamaciones.length"
+      [pageSize]="20"
+      [pageSizeOptions]="[20, 50, 100]"
+      aria-label="Paginación">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1><mat-icon class="header-icon">manage_accounts</mat-icon> Roles</h1>
+    <a [routerLink]="['nuevo']" class="btn-new">
+      <mat-icon>add</mat-icon> Nuevo Rol
+    </a>
+  </div>
+
+  <div class="items-grid">
+    <div class="item-card" *ngFor="let element of dataSource.data">
+      <div class="item-badge">
+        <mat-icon>badge</mat-icon>
+      </div>
+      <div class="item-info">
+        <h3>{{ element.nombreRol }}</h3>
+        <span class="item-id">ID: {{ element.idRol }}</span>
+      </div>
+      <div class="item-actions">
+        <button class="btn-action btn-edit" [routerLink]="['ediciones', element.idRol]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="btn-action btn-delete" (click)="eliminar(element.idRol)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,181 @@
+.logo {
+    width: 200px;
+    height: 44px;
+    background-image: url('https://i.ibb.co/X8Z8g18/logo.png');
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    margin-right: 20px;
+}
+
+.custom-toolbar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; 
+    position: fixed;
+    padding: 0 30px; /* Cambiado para mejor alineación horizontal */
+    height: 70px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); 
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.menu-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Mejor espaciado */
+}
+
+/* Evitar zooms globales que rompen las pantallas */
+.button-rol, .button-tipo, .button-favoritos, .button-noti, .button-noticias, .close {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.noti-text, .menu-text {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.points-badge button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+}
+
+
+ /* Estilos para el contenedor principal */
+ .main-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la ventana */    
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 250px; /* Redimensionado ligeramente para verse moderno */
+    height: 100vh;
+    background-color: #ffffff; /* BLANCO PURO */
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 60px; /* Ajustado debajo de la barra superior */
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.03); /* Sombra para separar del fondo gris */
+    border-right: 1px solid #e2e8f0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaciado automático para botones */
+}
+
+/* Botones del menú principal y Sidebar */
+.menu-item-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.main-menu-btn {
+    flex-grow: 1;
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left;
+    border-radius: 12px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+    background: transparent;
+    color: #334155 !important;
+}
+
+.report-btn {
+    color: #64748b !important;
+    transition: all 0.2s ease;
+}
+
+.main-menu-btn:hover, .report-btn:hover {
+    background-color: #f0fdf4 !important;
+    color: #27ae60 !important;
+}
+
+/* Antiguos menu items que quedan (Portal empleado) */
+.menu-item {
+    display: flex;
+    align-items: center;
+    background-color: transparent !important;
+    border-radius: 12px; 
+    width: 100%;
+    padding: 4px 8px; 
+    transition: all 0.2s ease;
+}
+
+/* Hover de los botones para efecto luz verde */
+.menu-item:hover, .menu-item button:hover {
+    background-color: #f0fdf4 !important; /* Fondo verde cristal */
+    color: #27ae60 !important;
+}
+.menu-item:hover mat-icon, .menu-item:hover .menu-text {
+    color: #27ae60 !important;
+}
+
+/* Texto del menú */
+.menu-text {
+    font-weight: bold;
+    font-family: 'Gabarito', sans-serif;
+    font-size: 10px;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Contenido principal */
+.content {
+    margin-left: 250px; 
+    padding: 100px 40px 40px; /* Padding superior para evitar solape con toolbar top */
+    flex-grow: 1;
+    min-height: 100vh; 
+    background-color: transparent; /* Permite ver el gris del body global */
+    overflow-y: auto; 
+}
+
+/*Logo persona*/
+.sidebar-icon {
+    text-align: center; /* Centra la imagen dentro de la barra lateral */
+    margin-top: auto; /* Empuja la imagen hacia la parte inferior de la barra lateral */
+    margin-top: 80px;
+    width: 200px;
+}
+
+.recycling-icon {
+    width: 80%; /* Hace que la imagen ocupe todo el ancho de la barra lateral */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-left: 65px;
+}
+.menu-toolbar {
+    display: flex;
+    gap: 8px;
+}
+.mat-menu-item {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+    }
+    .main-container {
+        flex-direction: column;
+    }
+}

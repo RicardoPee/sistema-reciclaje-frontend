@@ -1,0 +1,19 @@
+<div class="podium-container">
+    <div class="title-container">
+      <h1>🌍 Podium: Centros Populares</h1>
+      <p>Los centros de reciclaje con mayor afluencia/usuarios registrados en el último mes.</p>
+    </div>
+    
+    <div class="cards-wrapper" *ngIf="topVisitados.length > 0">
+       <div class="podium-card" *ngFor="let element of topVisitados; let i = index" [ngClass]="'rank-' + (i + 1)">
+            <div class="rank-badge">#{{ i + 1 }}</div>
+            <mat-icon class="medal-icon" [ngClass]="'medal-' + (i + 1)">people</mat-icon>
+            <h2>Centro en:</h2>
+            <p class="address">{{ element.direccion }}</p>
+            <div class="score" style="background:#e0f2fe; color:#0369a1;">
+               <mat-icon style="color:#0ea5e9;">group</mat-icon>
+               <span>{{ element.username }} Visitantes</span>
+            </div>
+       </div>
+    </div>
+ </div>

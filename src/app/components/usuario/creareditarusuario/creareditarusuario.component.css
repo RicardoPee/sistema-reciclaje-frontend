@@ -1,0 +1,71 @@
+.container {
+    padding: 60px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 100px;
+
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #c6f5c6;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-icon {
+    font-size: 36px;
+    color: black;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .username {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .edit-button {
+    color: #4caf50;
+  }
+  
+  .form-grid {
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .custom-button {
+    background-color: #c6f5c6;
+    color: black;
+    grid-column: span 2;
+    align-items: center;
+    width: 550px;
+  }
+  
+  .example-margin{
+    margin-left: 220px;
+    margin-top: -20px;
+  }
+  .roldiv .rol{
+    margin-left: 30px;
+    width: 502px;
+  }

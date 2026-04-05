@@ -1,0 +1,19 @@
+<div class="podium-container">
+    <div class="title-container">
+      <h1>🏆 Podium: Centros Favoritos</h1>
+      <p>Ranking de los Centros de Reciclaje más agregados a favoritos por usuarios.</p>
+    </div>
+    
+    <div class="cards-wrapper" *ngIf="topCentros.length > 0">
+       <div class="podium-card" *ngFor="let element of topCentros; let i = index" [ngClass]="'rank-' + (i + 1)">
+            <div class="rank-badge">#{{ i + 1 }}</div>
+            <mat-icon class="medal-icon" [ngClass]="'medal-' + (i + 1)">workspace_premium</mat-icon>
+            <h2>Centro en:</h2>
+            <p class="address">{{ element.direccion }}</p>
+            <div class="score">
+               <mat-icon>favorite</mat-icon>
+               <span>{{ element.cantidadFavoritos }} Favoritos Totales</span>
+            </div>
+       </div>
+    </div>
+ </div>

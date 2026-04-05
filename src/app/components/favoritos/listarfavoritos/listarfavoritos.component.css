@@ -1,0 +1,89 @@
+.page-wrapper {
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding: 24px 20px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.header-icon { color: #97db86; font-size: 2rem; width: 2rem; height: 2rem; }
+
+.btn-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #27ae60;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.btn-new:hover { background: #1e8449; }
+
+.claims-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.claim-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.claim-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+.claim-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: #f0faf1;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.claim-icon mat-icon { color: #27ae60; font-size: 26px; width: 26px; height: 26px; }
+
+.claim-info { flex: 1; }
+.claim-reward { margin: 0 0 6px 0; font-size: 0.95rem; font-weight: 700; color: #2c3e50; }
+
+.claim-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+.meta-item { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: #636e72; }
+.meta-item mat-icon { font-size: 14px; width: 14px; height: 14px; }
+
+.item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.btn-action {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border: none; border-radius: 8px; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-edit { background: #e8f5e9; color: #27ae60; }
+.btn-edit:hover { background: #27ae60; color: #fff; }
+.btn-delete { background: #ffeaea; color: #e74c3c; }
+.btn-delete:hover { background: #e74c3c; color: #fff; }
+
+mat-paginator { background: transparent; border-radius: 10px; }

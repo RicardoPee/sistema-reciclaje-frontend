@@ -1,0 +1,55 @@
+.title-container {
+    padding: 20px 40px;
+}
+
+.title-container h1 {
+    font-family: 'Gabarito', sans-serif;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+}
+
+.styled-table {
+    width: 90%;
+    margin: 20px auto;
+    font-family: 'Inter', sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+mat-header-cell {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+}
+
+.expired {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.critical {
+    background: #ffedd5;
+    color: #f97316;
+}
+
+.warning {
+    background: #fef9c3;
+    color: #eab308;
+}
+
+.safe {
+    background: #dcfce7;
+    color: #22c55e;
+}

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="title-container">
+    <h1>🎁 Top Recompensas</h1>
+    <p>Las recompensas más atractivas canjeadas por nuestros usuarios.</p>
+  </div>
+  <div class="chart-container">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [type]="barChartType"
+    >
+    </canvas>
+  </div>
+</div>

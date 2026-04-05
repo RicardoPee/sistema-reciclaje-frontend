@@ -1,0 +1,66 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div>
+    <h1>{{ edicion ? "Actualizar recompensa" : "Registrar recompensa" }}</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <!-- <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="hcodigo" [disabled]="isCliente()" />
+        <mat-error *ngIf="form.get('hcodigo')?.hasError('required')">
+          El codigo es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br /> -->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="hnombre" [disabled]="isCliente()" />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          El nombre es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción de la recompensa</mat-label>
+        <textarea
+          matInput
+          formControlName="hdescripcion"
+          [disabled]="isCliente()"
+          rows="3"
+        ></textarea>
+        <mat-error *ngIf="form.get('hdescripcion')?.hasError('required')">
+          El descripcion es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Seleccione una fecha de vencimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="hfecha"
+          [disabled]="isCliente()" [min]="minFecha" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('hfecha')?.hasError('required')">La fecha de vencimiento es obligatoria</mat-error>
+      </mat-form-field>
+      <br />
+
+      <!-- STOCK -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Stock disponible (-1 = ilimitado)</mat-label>
+        <input matInput type="number" formControlName="hstock" [disabled]="isCliente()" min="-1" />
+        <mat-hint>0 = AGOTADO · -1 = sin límite · Ej: 50</mat-hint>
+        <mat-error *ngIf="form.get('hstock')?.hasError('required')">El stock es obligatorio</mat-error>
+        <mat-error *ngIf="form.get('hstock')?.hasError('min')">Mínimo -1 (ilimitado)</mat-error>
+      </mat-form-field>
+      <br />
+      <div>
+        <button mat-flat-button class="custom-button">
+          {{ edicion ? "ACTUALIZAR" : "REGISTRAR" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
