@@ -13,10 +13,20 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { routes } from './app.routes';
+import { environment } from '../environments/environment';
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
 }
+
+// Extraer el dominio (ej: localhost:8080 o app.up.railway.app) desde la base del environment
+const getDomain = (url: string) => {
+  try {
+    return new URL(url).host;
+  } catch {
+    return url.replace('http://', '').replace('https://', '').split('/')[0];
+  }
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,19 +38,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       JwtModule.forRoot({
         config: {
-          
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8080'],
-           disallowedRoutes: [
-             'http://localhost:8080/login/forget',
-          //allowedDomains: ['grupo-2arqui-production-backend.up.railway.app'],
-          //disallowedRoutes: [
-          //  'xdaxdhttps://grupo-2arqui-production-backend.up.railway.app/login/forget',
-          //],
-          // allowedDomains: ['localhost:8080'],
-          // disallowedRoutes: [
-          //   'http://localhost:8080/login/forget',
-           ],
+          allowedDomains: [getDomain(environment.base)], // Detecta tu BD automáticamente
+          disallowedRoutes: [`${environment.base}/login/forget`],
         },
       })
     )

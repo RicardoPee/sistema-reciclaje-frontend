@@ -48,7 +48,7 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
   private markersLayer = L.layerGroup();
   role: String = '';
 
-  private readonly mapboxToken = 'AQUI_VA_EL_TOKEN';
+  private readonly mapboxToken = 'pk.eyJ1IjoicmljYXJkby0yMDI2IiwiYSI6ImNtbmh3MnF4MzA3NHAycG9peXowNWd4Mm8ifQ.gQdOezx1RwRqlafEsFh_AQ';
 
   constructor(
     private cS: CentroReciclajeService,
@@ -59,10 +59,10 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.role = this.lS.showRole();
-    if(this.isCliente() || this.isAdmi()) {
+    if (this.isCliente() || this.isAdmi()) {
       this.fetchFavoritos();
     } else {
-       this.fetchCentros();
+      this.fetchCentros();
     }
   }
 
@@ -94,22 +94,22 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
     }
 
     const mapCentros: CentroVisual[] = filtrados.map(c => {
-       const favEntry = this.misFavoritos.find(f => f.centroReciclaje.idCentroReciclaje === c.idCentroReciclaje);
-       return {
-          ...c,
-          isFavorite: !!favEntry,
-          idFavorito: favEntry ? favEntry.idFavorito : undefined
-       };
+      const favEntry = this.misFavoritos.find(f => f.centroReciclaje.idCentroReciclaje === c.idCentroReciclaje);
+      return {
+        ...c,
+        isFavorite: !!favEntry,
+        idFavorito: favEntry ? favEntry.idFavorito : undefined
+      };
     });
 
-    mapCentros.sort((a,b) => {
-       if (a.isFavorite && !b.isFavorite) return -1;
-       if (!a.isFavorite && b.isFavorite) return 1;
-       return 0;
+    mapCentros.sort((a, b) => {
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
+      return 0;
     });
 
     this.centros = mapCentros;
-    if(this.paginator) { this.paginator.pageIndex = 0; }
+    if (this.paginator) { this.paginator.pageIndex = 0; }
     this.updatePagedData();
   }
 
@@ -125,58 +125,58 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
     const favReal = this.misFavoritos.find(f => f.centroReciclaje.idCentroReciclaje === centro.idCentroReciclaje);
 
     if (favReal) {
-        // YA ES FAVORITO → ELIMINAR
-        const idToDelete = favReal.idFavorito;
-        // Actualización optimista visual
-        centro.isFavorite = false;
-        centro.idFavorito = undefined;
-        this.misFavoritos = this.misFavoritos.filter(f => f.idFavorito !== idToDelete);
-        this.sortAndSaveLocally();
+      // YA ES FAVORITO → ELIMINAR
+      const idToDelete = favReal.idFavorito;
+      // Actualización optimista visual
+      centro.isFavorite = false;
+      centro.idFavorito = undefined;
+      this.misFavoritos = this.misFavoritos.filter(f => f.idFavorito !== idToDelete);
+      this.sortAndSaveLocally();
 
-        this.fS.delete(idToDelete).subscribe({
-          error: () => {
-            // Revertir si el delete falla en la BD
-            centro.isFavorite = true;
-            centro.idFavorito = idToDelete;
-            this.misFavoritos.push(favReal);
-            this.sortAndSaveLocally();
-          }
-        });
+      this.fS.delete(idToDelete).subscribe({
+        error: () => {
+          // Revertir si el delete falla en la BD
+          centro.isFavorite = true;
+          centro.idFavorito = idToDelete;
+          this.misFavoritos.push(favReal);
+          this.sortAndSaveLocally();
+        }
+      });
     } else {
-        // NO ES FAVORITO → GUARDAR
-        centro.isFavorite = true;
-        this.sortAndSaveLocally();
+      // NO ES FAVORITO → GUARDAR
+      centro.isFavorite = true;
+      this.sortAndSaveLocally();
 
-        const nuevoFav = new Favoritos();
-        const numUserId = parseInt(this.lS.getID() || '0');
-        nuevoFav.user.idUser = numUserId;
-        nuevoFav.centroReciclaje.idCentroReciclaje = centro.idCentroReciclaje;
+      const nuevoFav = new Favoritos();
+      const numUserId = parseInt(this.lS.getID() || '0');
+      nuevoFav.user.idUser = numUserId;
+      nuevoFav.centroReciclaje.idCentroReciclaje = centro.idCentroReciclaje;
 
-        this.fS.insert(nuevoFav).subscribe({
-          next: () => {
-            // Recargar misFavoritos para tener el idFavorito real del servidor
-            const myId = this.lS.getID();
-            this.fS.list().subscribe(favs => {
-              this.misFavoritos = favs.filter(f => String(f.user.idUser) === String(myId));
-              const saved = this.misFavoritos.find(f => f.centroReciclaje.idCentroReciclaje === centro.idCentroReciclaje);
-              if (saved) {
-                centro.idFavorito = saved.idFavorito;
-              }
-            });
-          },
-          error: () => {
-            centro.isFavorite = false;
-            this.sortAndSaveLocally();
-          }
-        });
+      this.fS.insert(nuevoFav).subscribe({
+        next: () => {
+          // Recargar misFavoritos para tener el idFavorito real del servidor
+          const myId = this.lS.getID();
+          this.fS.list().subscribe(favs => {
+            this.misFavoritos = favs.filter(f => String(f.user.idUser) === String(myId));
+            const saved = this.misFavoritos.find(f => f.centroReciclaje.idCentroReciclaje === centro.idCentroReciclaje);
+            if (saved) {
+              centro.idFavorito = saved.idFavorito;
+            }
+          });
+        },
+        error: () => {
+          centro.isFavorite = false;
+          this.sortAndSaveLocally();
+        }
+      });
     }
   }
 
   sortAndSaveLocally() {
-    this.centros.sort((a,b) => {
-       if (a.isFavorite && !b.isFavorite) return -1;
-       if (!a.isFavorite && b.isFavorite) return 1;
-       return 0;
+    this.centros.sort((a, b) => {
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
+      return 0;
     });
     this.updatePagedData();
   }
@@ -206,7 +206,7 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
 
   dibujarTodosLosPuntos(): void {
     if (!this.map || this.centros.length === 0) return;
-    
+
     this.markersLayer.clearLayers();
     this.centros.forEach(centro => {
       if (centro.latitud && centro.longitud) {

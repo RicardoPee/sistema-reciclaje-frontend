@@ -42,10 +42,10 @@ export class CreareditarcentroreciclajeComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   role: string = '';
-  
+
   private map: any;
   private marker: any;
-  private readonly mapboxToken = 'AQUI_VA_EL_TOKEN_MAPBOX';
+  private readonly mapboxToken = 'pk.eyJ1IjoicmljYXJkby0yMDI2IiwiYSI6ImNtbmh3MnF4MzA3NHAycG9peXowNWd4Mm8ifQ.gQdOezx1RwRqlafEsFh_AQ';
 
   constructor(
     private cS: CentroReciclajeService,
@@ -75,8 +75,8 @@ export class CreareditarcentroreciclajeComponent implements OnInit {
   }
 
   initMap(): void {
-    const defaultParams: L.LatLngExpression = this.edicion && this.centroReciclaje.latitud 
-      ? [this.centroReciclaje.latitud, this.centroReciclaje.longitud] 
+    const defaultParams: L.LatLngExpression = this.edicion && this.centroReciclaje.latitud
+      ? [this.centroReciclaje.latitud, this.centroReciclaje.longitud]
       : [-12.046374, -77.042793]; // Centro en Lima
 
     this.map = L.map('formMap').setView(defaultParams, 12);
@@ -113,12 +113,12 @@ export class CreareditarcentroreciclajeComponent implements OnInit {
             // Se toma el nombre del lugar más preciso devuelto por Mapbox
             direccion = data.features[0].place_name;
           }
-          
+
           // Truncar si la dirección es estúpidamente larga (limite de JPA es 225)
           if (direccion.length > 220) {
             direccion = direccion.substring(0, 220) + "...";
           }
-          
+
           this.form.patchValue({
             hdireccion: direccion
           });
