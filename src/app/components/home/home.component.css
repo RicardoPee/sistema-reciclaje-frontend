@@ -1,113 +1,85 @@
-.container {
+.registration-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  margin: 450px; /* Centrará horizontalmente el contenedor */
-  margin-top: 10px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-image {
+  flex: 0 0 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 40px;
+}
+
+.left-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.container {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 30px;
   border-radius: 12px;
-  width: 70%;
-  max-width: 800px; /* Limita el ancho máximo del contenedor */
-  overflow: hidden; /* Asegura que no haya desbordamientos visuales */
-  transform: translate(0);
-  overflow: hidden; /* Asegura que el contenido no salga del contenedor */
-  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 700px;
 }
 
 h1 {
   color: #2c3e50;
   font-family: "Gabarito", sans-serif;
-  font-size: 3rem;
-  margin-top: 30px;
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 20px;
   font-weight: bold;
   text-align: center;
-  margin-right: 30px;
 }
 
 mat-form-field {
-  width: 90%;
-  border-radius: 8px;
-}
-
-mat-form-field.rol {
-  width: 95%;
-  border-radius: 8px;
-}
-
-mat-form-field input {
-  font-family: "Gabarito", sans-serif;
-}
-
-.form-container {
-  flex: 1; /* Ocupa el resto del espacio disponible */
-  display: flex;
-  flex-direction: column;
   width: 100%;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.2rmax;
-  width: 100%; /* Asegura que ocupe todo el ancho permitido */
-  justify-content: center;
-}
-
-.mat-checkbox {
-  grid-column: span 2;
-  justify-self: center;
-}
-
-.custom-button {
-  background-color: rgb(84, 164, 47);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  font-family: "Gabarito", sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-}
-
-.custom-button:hover {
-  background-color: rgb(72, 129, 46);
-}
-.custom-cancel {
-  background-color: rgb(84, 164, 47);
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  font-family: "Gabarito", sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-}
-
-.custom-cancel:hover {
-  background-color: rgb(72, 129, 46);
+  gap: 15px;
+  width: 100%;
 }
 
 .button-container {
   display: flex;
-  justify-content: left; /* Centra los botones horizontalmente */
-  gap: 10px; /* Espaciado entre los botones */
-  margin-top: 16px; /* Espaciado superior */
-  margin-left: 240px;
-}
-
-.left-image {
-  float: left;
-  width: 35%; /* Ajusta el ancho según sea necesario */
-  margin-left: 50px;
-  margin-right: 50px; /* Espaciado entre la imagen y el formulario */
-  margin-top: 190px;
-}
-
-.left-image img {
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
   width: 100%;
-  height: auto; /* Mantiene la proporción de la imagen */
 }
 
-@media (max-width: 768px) {
+.custom-button, .custom-cancel {
+  background-color: rgb(84, 164, 47);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-family: "Gabarito", sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  padding: 0 30px;
+  height: 45px;
+}
+
+.custom-button:hover, .custom-cancel:hover {
+  background-color: rgb(72, 129, 46);
+}
+
+@media (max-width: 900px) {
     .container {
       flex-direction: column; /* Cambia a diseño vertical */
       align-items: center;
