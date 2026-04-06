@@ -6,7 +6,7 @@ Este repositorio contiene la aplicación web (SPA) desarrollada en **Angular 17+
 
 * **Angular:** Framework principal para la creación de la interfaz.
 * **TypeScript:** Lenguaje base para una programación robusta.
-* **Angular Material / Bootstrap:** (Elige la que usaste) para un diseño responsivo y moderno.
+* **Angular Material / Bootstrap:** Para un diseño responsivo y moderno.
 * **Mapbox API:** Implementación de mapas interactivos para localizar puntos de reciclaje.
 * **RxJS:** Gestión de flujos de datos asíncronos y peticiones HTTP.
 * **JSON Web Tokens (JWT):** Manejo de sesiones seguras y autenticación.
