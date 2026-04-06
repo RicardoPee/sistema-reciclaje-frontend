@@ -11,20 +11,19 @@ Este repositorio contiene la aplicación web (SPA) desarrollada en **Angular 17+
 * **RxJS:** Gestión de flujos de datos asíncronos y peticiones HTTP.
 * **JSON Web Tokens (JWT):** Manejo de sesiones seguras y autenticación.
 
-## 📸 Vista Previa del Proyecto
+##  Vista Previa del Proyecto
 
-![Dashboard del Sistema]<img width="1444" height="870" alt="image" src="https://github.com/user-attachments/assets/87ddcf4f-07bc-47cd-954a-e6b4d454e881" />
-
+<img width="2548" height="1325" alt="image" src="https://github.com/user-attachments/assets/ff2daa47-6bae-41c4-b8f6-68bf5a25fbef" />
 *Captura de pantalla de la interfaz principal del sistema.*
 
-## 🛠️ Características Principales
+##  Características Principales
 
 1. **Dashboard de Usuario:** Visualización de puntos acumulados y materiales reciclados.
 2. **Mapa Interactivo:** Localización en tiempo real de centros de acopio cercanos.
 3. **Gestión de Centros:** Formularios reactivos para la creación y edición de puntos de reciclaje (módulo administrativo).
 4. **Seguridad:** Guardianes de ruta (AuthGuards) para proteger el acceso a usuarios no autenticados.
 
-## ⚙️ Configuración para Desarrollo
+##  Configuración para Desarrollo
 
 Si deseas ejecutar este proyecto localmente, sigue estos pasos:
 
