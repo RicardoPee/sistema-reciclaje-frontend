@@ -1,27 +1,50 @@
-# Frontend
+#  Frontend - Sistema de Gestión de Reciclaje (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+Este repositorio contiene la aplicación web (SPA) desarrollada en **Angular 17+** para el sistema de reciclaje. La interfaz permite a los usuarios interactuar con los servicios del backend de forma intuitiva, visualizando centros de reciclaje, gestionando perfiles y consultando estadísticas de impacto ambiental.
 
-## Development server
+##  Tecnologías Utilizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* **Angular:** Framework principal para la creación de la interfaz.
+* **TypeScript:** Lenguaje base para una programación robusta.
+* **Angular Material / Bootstrap:** (Elige la que usaste) para un diseño responsivo y moderno.
+* **Mapbox API:** Implementación de mapas interactivos para localizar puntos de reciclaje.
+* **RxJS:** Gestión de flujos de datos asíncronos y peticiones HTTP.
+* **JSON Web Tokens (JWT):** Manejo de sesiones seguras y autenticación.
 
-## Code scaffolding
+## 📸 Vista Previa del Proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Dashboard del Sistema]<img width="1444" height="870" alt="image" src="https://github.com/user-attachments/assets/87ddcf4f-07bc-47cd-954a-e6b4d454e881" />
 
-## Build
+*Captura de pantalla de la interfaz principal del sistema.*
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🛠️ Características Principales
 
-## Running unit tests
+1. **Dashboard de Usuario:** Visualización de puntos acumulados y materiales reciclados.
+2. **Mapa Interactivo:** Localización en tiempo real de centros de acopio cercanos.
+3. **Gestión de Centros:** Formularios reactivos para la creación y edición de puntos de reciclaje (módulo administrativo).
+4. **Seguridad:** Guardianes de ruta (AuthGuards) para proteger el acceso a usuarios no autenticados.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ⚙️ Configuración para Desarrollo
 
-## Running end-to-end tests
+Si deseas ejecutar este proyecto localmente, sigue estos pasos:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 1. Clonar el repositorio
+Usa el siguiente comando en tu terminal:
+`git clone https://github.com/RicardoPee/sistema-reciclaje-frontend.git`
 
-## Further help
+### 2. Instalar dependencias
+Asegúrate de tener [Node.js](https://nodejs.org/) instalado y ejecuta:
+`npm install`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 3. Configurar el Token de Mapbox
+Por motivos de seguridad, los tokens de acceso han sido ocultados en el repositorio público. Para que los mapas funcionen, debes colocar tu token en los componentes correspondientes:
+* `src/app/components/centro-reciclaje/creareditarcentroreciclaje/creareditarcentroreciclaje.component.ts`
+* `src/app/components/centro-reciclaje/listarcentroreciclaje/listarcentroreciclaje.component.ts`
+
+### 4. Levantar el servidor de desarrollo
+Ejecuta el comando:
+`ng serve`
+Una vez que el comando termine, abre tu navegador en `http://localhost:4200/`.
+
+---
+Desarrollado por **Ricardo** - Estudiante de Ingeniería de Sistemas (9no ciclo).
