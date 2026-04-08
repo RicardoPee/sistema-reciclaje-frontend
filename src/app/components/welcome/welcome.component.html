@@ -1,89 +1,79 @@
-<nav class="Navbar inline">
-  <div class="inline content-3 space-between">
-    <a routerLink="/" class="Logo block-center-center">
-      <img src="https://i.ibb.co/X8Z8g18/logo.png" alt="Eco-Reciclaje Logo" />
+<!-- Navbar Premium Flotante "Glass-Eco" -->
+<header class="glass-navbar">
+  <div class="nav-container">
+    <a routerLink="/" class="logo" aria-label="Inicio">
+      <img src="https://i.ibb.co/X8Z8g18/logo.png" alt="Eco-Reciclaje Logo">
     </a>
-    
-    <div class="Menu inline-center-center">
-      <div class="NavItem block-center-center">
-        <a class="NavLink block-center-center">
-          <span class="NavLinkTitle">Misión</span>
-          <span class="NavIcon"><i class="ri-leaf-line"></i></span>
-        </a>
-        <div class="ItemContent block gap-2">
-          <div class="ItemTitle">Nuestra Misión</div>
-          <ul class="block content-1 gap-2">
-            <li><a href="#">Fomentar el reciclaje y educar a la comunidad mediante un sistema fácil y rápido.</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="NavItem block-center-center">
-        <a class="NavLink block-center-center">
-          <span class="NavLinkTitle">Visión</span>
-          <span class="NavIcon"><i class="ri-eye-line"></i></span>
-        </a>
-        <div class="ItemContent block gap-2">
-          <div class="ItemTitle">Nuestra Visión</div>
-          <ul class="block content-1 gap-2">
-            <li><a href="#">Convertirnos en la plataforma líder en sostenibilidad e impulsar una economía circular.</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="NavItem block-center-center">
-        <a class="NavLink block-center-center">
-          <span class="NavLinkTitle">Equipo</span>
-          <span class="NavIcon"><i class="ri-team-line"></i></span>
-        </a>
-        <div class="ItemContent block gap-2">
-          <div class="ItemTitle">Detrás del Proyecto</div>
-          <ul class="block content-1 gap-2">
-            <li><a href="#equipo-section">Jaira - Lead Developer</a></li>
-            <li><a href="#equipo-section">Nuestros Desarrolladores</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="inline-center-center gap-3">
-      <a routerLink="/login" class="ButtonLink" style="background: transparent; color: var(--brand); border: 2px solid var(--brand);">Iniciar Sesión</a>
-      <a routerLink="/home" class="ButtonLink">Regístrate</a>
+    <nav class="nav-links">
+      <a href="#mision" class="nav-link">Nuestra Misión</a>
+      <a href="#vision" class="nav-link">Visión Sostenible</a>
+      <a href="#equipo" class="nav-link">El Equipo</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <a routerLink="/login" class="btn-login">Ingresar</a>
+      <a routerLink="/home" class="btn-register">Empezar a Reciclar</a>
     </div>
   </div>
-</nav>
+</header>
 
-<main class="Main block">
-  <div class="CarouselWrapper">
-    <section class="Carousel inline">
-      <figure>
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 1" />
-      </figure>
-      <figure>
-        <img src="https://images.unsplash.com/photo-1605364177402-b060d4a9cf29?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 2" />
-      </figure>
-      <figure>
-        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b1bc?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 3" />
-      </figure>
-      <figure>
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 4" />
-      </figure>
-      <figure>
-        <img src="https://images.unsplash.com/photo-1605364177402-b060d4a9cf29?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 5" />
-      </figure>
-      <figure> <!-- Clone of first for smooth loop -->
-        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop" alt="Reciclaje 1 Clone" />
-      </figure>
-    </section>
-  </div>
+<main class="landing-main">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="badge">🍃 El futuro es verde</div>
+      <h1 class="hero-title">Liderando el cambio hacia un <br> mundo más sostenible</h1>
+      <p class="hero-subtitle">Únete a la plataforma tecnológica de Lima diseñada para hacer del reciclaje una experiencia fácil, rápida y gratificante para todos.</p>
+      <div class="hero-actions">
+        <a routerLink="/home" class="btn-primary">Únete a la Comunidad</a>
+        <a href="#mision" class="btn-secondary">Saber más ↓</a>
+      </div>
+    </div>
+  </section>
 
-  <section id="equipo-section" style="padding: 5rem 2rem; background: var(--bg-light); text-align: center;">
-      <h2 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 3rem; font-family: 'Inter', sans-serif;">El Equipo Detrás del Proyecto</h2>
-      <div style="display: flex; justify-content: center;">
-          <div style="background: white; padding: 2rem; border-radius: 15px; width: 350px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center;">
-              <div style="width: 100px; height: 100px; background: var(--brand); color: white; font-size: 3rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 1.5rem auto; font-weight: bold;">J</div>
-              <h3 style="color: #2c3e50; font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif;">Jaira</h3>
-              <p style="color: var(--brand); font-weight: bold; margin-bottom: 1rem; font-family: 'Inter', sans-serif;">Founder & Lead Developer</p>
-              <p style="color: #555; line-height: 1.5; font-size: 1rem; font-family: 'Inter', sans-serif;">Creadora del ecosistema Eco-Reciclaje. Encargada de desplegar la arquitectura completa, desde la base de datos hasta interfaces interactivas para un futuro sostenible.</p>
+  <!-- Misión y Visión Grid -->
+  <section id="mision" class="info-section">
+    <div class="info-container grid-2">
+      <!-- Tarjeta Misión -->
+      <div class="info-card glass-card">
+        <div class="card-icon">🌍</div>
+        <h2 class="card-title">Nuestra Misión</h2>
+        <p class="card-text">Queremos fomentar el reciclaje y educar a nuestra comunidad. Proveemos las herramientas tecnológicas necesarias para convertir el acto de reciclar en un hábito diario, conectando a las personas con sus puntos de recolección.</p>
+      </div>
+
+      <!-- Tarjeta Visión -->
+      <div id="vision" class="info-card glass-card">
+        <div class="card-icon">👁️</div>
+        <h2 class="card-title">Nuestra Visión</h2>
+        <p class="card-text">Aspiramos a convertirnos en la plataforma centralizada líder en el impulso de la economía circular, reduciendo la contaminación ambiental mediante tecnología y gamificación que beneficie a las futuras generaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Equipo -->
+  <section id="equipo" class="team-section">
+    <div class="team-container">
+      <h2 class="section-title">El Cerebro Detrás del Ecosistema</h2>
+      <p class="section-subtitle">Conoce a la fundadora que hizo todo esto posible.</p>
+
+      <div class="team-card premium-card">
+        <div class="team-avatar-wrapper">
+          <div class="team-avatar">J</div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">Jaira</h3>
+          <h4 class="team-role">Fundadora & Desarrolladora Full-Stack</h4>
+          <p class="team-desc">Estudiante de Ingeniería encargada de toda la arquitectura de software. Desde las bases de datos relacionales en la nube (PostgreSQL), la API de Spring Boot y el despliegue seguro en Vercel, liderando el desarrollo enfocado en impacto ambiental positivo.</p>
+          <div class="team-tags">
+            <span class="tag">Java Spring</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Database</span>
           </div>
+        </div>
       </div>
+    </div>
   </section>
 </main>
+
