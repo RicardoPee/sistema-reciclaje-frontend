@@ -13,6 +13,23 @@ body {
     font-family: 'Gabarito', sans-serif;
 }
 
+/* Animaciones Premium */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slowZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
 /* Barra de navegación */
 .navbar {
     display: flex;
@@ -22,88 +39,124 @@ body {
     background-color: #ffffff;
     height: 7vh;
     z-index: 2;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .logo-inicio {
-    width: 250px; /* Ajusta el ancho según sea necesario */
-    height: 90px; /* Ajusta la altura según sea necesario */
+    width: 250px;
+    height: 90px;
     background-image: url('https://i.ibb.co/X8Z8g18/logo.png');
-    background-size: 220px; /* Mantiene la proporción de la imagen */
-    background-position: center; /* Centra la imagen en el div */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: rgb(133, 202, 122); /* Color de fondo verde */
-    border-radius: 10px; /* Bordes redondeados opcionales */
-    position: relative; /* Para permitir el uso de pseudo-elementos */
+    background-size: 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(133, 202, 122);
+    border-radius: 10px;
+    position: relative;
     z-index: 3; 
+    transition: transform 0.3s ease;
+}
+
+.logo-inicio:hover {
+    transform: scale(1.02);
 }
 
 /* Sección de bienvenida */
 .welcome-section {
-    position: relative; /* Asegura que el pseudo-elemento esté posicionado relativo a este contenedor */
+    position: relative;
     height: 100vh;
-    background-image: url('https://i.ibb.co/cF8gXH5/background.png'); /* Imagen de fondo */
-    background-size: cover;
-    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden; /* Evita que el contenido desborde el contenedor */
+    overflow: hidden;
 }
 
-.welcome-section::before {
-    content: '';
-    position: absolute; /* Posiciona el pseudo-elemento absolutamente */
+/* Fondo animado (Efecto Ken Burns tenue) */
+.welcome-bg {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
-    z-index: 1; /* Asegura que el fondo negro esté encima de la imagen de fondo */
+    background-image: url('https://i.ibb.co/cF8gXH5/background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    animation: slowZoom 20s ease-in-out infinite alternate;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 1;
 }
 
 .welcome-text {
-    position: relative; /* Para asegurar que el texto esté sobre el fondo negro */
+    position: relative;
     padding: 2rem;
     border-radius: 10px;
     color: rgb(255, 255, 255);
-    z-index: 2; /* Asegura que el texto esté por encima del fondo negro */
+    z-index: 2;
+    /* Entrada animada */
+    animation: fadeUp 1s ease-out forwards;
 }
 
-h1, h2 { /* Asegúrate de que el estilo de la letra no cambie */
+h1, h2 {
     font-family: 'Gabarito', sans-serif;
 }
 
 h1 {
-    font-size: 4rem; /* Ajustar el tamaño según lo desees */
+    font-size: 4.5rem;
     margin-bottom: 0.5rem;
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
 }
 
 h2 {
-    font-size: 1.5rem; /* Ajustar el tamaño según lo desees */
-    margin-bottom: 1.5rem;
-    font-weight:lighter;
-
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
 }
 
 /* Botón de inicio de sesión */
 .login-button {
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.5rem;
     background-color: rgb(90, 181, 76);
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold; 
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: rgb(72, 150, 58);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(90, 181, 76, 0.4);
 }
 
 .register-button {
-    padding: 0.5rem 2rem;
+    padding: 0.8rem 2.5rem;
     background-color: #ffffff;
     color: #000000;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: 'Gabarito', sans-serif;
     font-weight: bold; 
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: rgb(90, 181, 76);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(90, 181, 76, 0.5);
 }
