@@ -230,6 +230,7 @@ body {
   background: var(--bg-color); /* Continuación del Gris Humo Oscuro */
   display: flex;
   justify-content: center;
+  background: url('https://www.freepik.com/photos/old-fashioned-background/4') center/cover fixed;
 }
 
 .info-container {
@@ -299,6 +300,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
 }
 
 .premium-card {
@@ -338,7 +340,12 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
-.team-info { display: flex; flex-direction: column; gap: 10px; }
+.team-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
 
 .team-name { font-size: 2rem; color: var(--text-main); }
 .team-role { font-size: 1.1rem; color: var(--primary-color); font-weight: 600; }
