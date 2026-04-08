@@ -1,11 +1,11 @@
-
-html, body { height: 10%; }
-body { 
-    margin: 0; 
-    font-family: 'Gabarito', sans-serif;
+/* Variables Clave y Reseteo */
+:root {
+  --primary-green: #85ca7a;
+  --dark-green: #4f8b46;
+  --bg-light: #f4faeb;
+  --text-dark: #2c3e50;
 }
 
-/* General */
 * {
     margin: 0;
     padding: 0;
@@ -13,150 +13,205 @@ body {
     font-family: 'Gabarito', sans-serif;
 }
 
-/* Animaciones Premium */
+/* --- NAV BAR --- */
+.Navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.nav-content {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Logo img {
+  height: 60px;
+  background-color: var(--primary-green);
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.Logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Menu Dropdowns */
+.Menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.NavItem {
+  position: relative;
+  cursor: pointer;
+  padding: 1.5rem 0;
+}
+
+.NavLinkTitle {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.NavItem:hover .NavLinkTitle { color: var(--primary-green); }
+
+.ItemContent {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: white;
+  min-width: 250px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.NavItem:hover .ItemContent {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ItemTitle {
+  font-weight: bold;
+  color: var(--dark-green);
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--primary-green);
+  padding-bottom: 0.5rem;
+}
+
+.Menu-Text { color: #555; font-size: 0.95rem; line-height: 1.5; }
+
+.ItemContent ul { list-style: none; }
+.ItemContent ul li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  display: block;
+  padding: 0.4rem 0;
+  transition: color 0.2s;
+}
+.ItemContent ul li a:hover { color: var(--primary-green); padding-left: 5px; }
+
+/* Botones Actions */
+.actions { display: flex; gap: 1rem; align-items: center; }
+
+.ButtonLink {
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+}
+
+.login-btn { color: var(--text-dark); border: 2px solid var(--primary-green); }
+.login-btn:hover { background: var(--primary-green); color: white; }
+
+.register-btn { background: var(--primary-green); color: white; }
+.register-btn:hover { background: var(--dark-green); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(79, 139, 70, 0.3); }
+
+/* --- MAIN HERO SECTION --- */
+.Main { margin-top: 80px; }
+
+.HeroWrapper {
+  height: 85vh;
+  /* El fondo requested por el usuario */
+  background: linear-gradient(135deg, rgba(84, 164, 47, 0.7), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1532996122724-e3c354a0b1bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 3rem;
+  border-radius: 16px;
+  color: white;
+  animation: fadeUp 1.2s ease-out;
+  border: 1px solid rgba(255,255,255,0.3);
+  max-width: 800px;
+}
+
+.hero-title { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+.hero-subtitle { font-size: 1.5rem; margin-bottom: 2rem; }
+
+.cta-main {
+  background: white;
+  color: var(--dark-green);
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  display: inline-block;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.cta-main:hover { background: var(--primary-green); color: white; transform: scale(1.05); }
+
+/* --- TEAM SECTION --- */
+.TeamSection {
+  padding: 5rem 2rem;
+  background: #f4faeb;
+  text-align: center;
+}
+
+.section-title { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 3rem; }
+
+.team-cards { display: flex; justify-content: center; }
+
+.team-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.team-card:hover { transform: translateY(-10px); }
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background: var(--primary-green);
+  color: white;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem auto;
+  font-weight: bold;
+}
+
+.team-card h3 { color: var(--text-dark); font-size: 1.5rem; margin-bottom: 0.5rem; }
+.team-card .role { color: var(--primary-green); font-weight: bold; margin-bottom: 1rem; }
+.team-card .desc { color: #555; line-height: 1.5; font-size: 1rem; }
+
+/* --- ANIMACIONES GLOBALES --- */
 @keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slowZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.05); }
-}
-
-/* Barra de navegación */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff;
-    height: 7vh;
-    z-index: 2;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.logo-inicio {
-    width: 250px;
-    height: 90px;
-    background-image: url('https://i.ibb.co/X8Z8g18/logo.png');
-    background-size: 220px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgb(133, 202, 122);
-    border-radius: 10px;
-    position: relative;
-    z-index: 3; 
-    transition: transform 0.3s ease;
-}
-
-.logo-inicio:hover {
-    transform: scale(1.02);
-}
-
-/* Sección de bienvenida */
-.welcome-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-}
-
-/* Fondo animado (Efecto Ken Burns tenue) */
-.welcome-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://i.ibb.co/cF8gXH5/background.png');
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-    animation: slowZoom 20s ease-in-out infinite alternate;
-}
-
-.welcome-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
-    z-index: 1;
-}
-
-.welcome-text {
-    position: relative;
-    padding: 2rem;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-    z-index: 2;
-    /* Entrada animada */
-    animation: fadeUp 1s ease-out forwards;
-}
-
-h1, h2 {
-    font-family: 'Gabarito', sans-serif;
-}
-
-h1 {
-    font-size: 4.5rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    font-weight: 300;
-    text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
-}
-
-/* Botón de inicio de sesión */
-.login-button {
-    padding: 0.6rem 1.5rem;
-    background-color: rgb(90, 181, 76);
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold; 
-    transition: all 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: rgb(72, 150, 58);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(90, 181, 76, 0.4);
-}
-
-.register-button {
-    padding: 0.8rem 2.5rem;
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Gabarito', sans-serif;
-    font-weight: bold; 
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.register-button:hover {
-    background-color: rgb(90, 181, 76);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(90, 181, 76, 0.5);
+@media (max-width: 768px) {
+    .Menu { display: none; }
+    .hero-title { font-size: 2.5rem; }
 }

@@ -1,15 +1,74 @@
-    <!-- Barra de navegación principal -->
-    <header class="navbar">
-        <div class="logo-inicio"></div>
-        <button class="login-button" [routerLink]="['/login']">INICIAR SESIÓN</button>
-    </header>
+<nav class="Navbar">
+  <div class="nav-content">
+    <!-- Logo -->
+    <a [routerLink]="['/']" class="Logo">
+      <img src="https://i.ibb.co/X8Z8g18/logo.png" alt="Eco-Reciclaje Logo" />
+    </a>
 
-    <!-- Contenido principal de bienvenida -->
-    <main class="welcome-section" id="welcome-section">
-        <div class="welcome-bg"></div>
-        <div class="welcome-text">
-            <h1>¡Bienvenido a Recycling!</h1>
-            <h2>Aquí puedes aprender sobre reciclaje y su importancia</h2>
-            <button class="register-button" [routerLink]="['/home']">REGÍSTRATE</button>
+    <!-- Menu Dropdowns -->
+    <div class="Menu">
+      <div class="NavItem">
+        <a class="NavLink">
+          <span class="NavLinkTitle">Misión</span>
+        </a>
+        <div class="ItemContent">
+          <div class="ItemTitle">Nuestra Misión</div>
+          <p class="Menu-Text">Fomentar el reciclaje y educar a la comunidad mediante un sistema fácil, rápido y gratificante para todos.</p>
         </div>
-    </main>
+      </div>
+
+      <div class="NavItem">
+        <a class="NavLink">
+          <span class="NavLinkTitle">Visión</span>
+        </a>
+        <div class="ItemContent">
+          <div class="ItemTitle">Nuestra Visión</div>
+          <p class="Menu-Text">Convertirnos en la plataforma líder en sostenibilidad en Lima, impulsando una economía circular y reduciendo el impacto ambiental.</p>
+        </div>
+      </div>
+
+      <div class="NavItem">
+        <a class="NavLink">
+          <span class="NavLinkTitle">Equipo</span>
+        </a>
+        <div class="ItemContent">
+          <div class="ItemTitle">Nosotros</div>
+          <ul>
+            <li><a href="#equipo-section">Conoce a Jaira</a></li>
+            <li><a href="#equipo-section">Desarrolladores</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="actions">
+      <a [routerLink]="['/login']" class="ButtonLink login-btn">Iniciar Sesión</a>
+      <a [routerLink]="['/home']" class="ButtonLink register-btn">Regístrate</a>
+    </div>
+  </div>
+</nav>
+
+<main class="Main">
+  <!-- Hero Section (Imagen de fondo + Letras) -->
+  <div class="HeroWrapper">
+    <div class="hero-content">
+      <h1 class="hero-title">Liderando el cambio hacia un mundo más verde</h1>
+      <p class="hero-subtitle">Reciclar nunca fue tan elegante y gratificante.</p>
+      <a [routerLink]="['/home']" class="ButtonLink cta-main">Comenzar a Reciclar</a>
+    </div>
+  </div>
+  
+  <!-- Sección de Equipo -->
+  <section class="TeamSection" id="equipo-section">
+      <h2 class="section-title">El Equipo Detrás del Proyecto</h2>
+      <div class="team-cards">
+          <div class="team-card">
+              <div class="avatar">J</div>
+              <h3>Jaira</h3>
+              <p class="role">Lead Developer & Founder</p>
+              <p class="desc">Creadora del ecosistema Eco-Reciclaje. Encargada de desplegar la arquitectura completa, desde la base de datos hasta interfaces interactivas para un futuro sostenible.</p>
+          </div>
+      </div>
+  </section>
+</main>
