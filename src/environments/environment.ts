@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-  base: "https://sistema-reciclaje-backend-wktb.onrender.com/",
+    base: "https://sistema-reciclaje-backend-wktb.onrender.com/",
     mapboxToken: 'pk.eyJ1IjoicmljYXJkby0yMDI2IiwiYSI6ImNtbmh3MnF4MzA3NHAycG9peXowNWd4Mm8ifQ.gQdOezx1RwRqlafEsFh_AQ'
 
     //production: false,
