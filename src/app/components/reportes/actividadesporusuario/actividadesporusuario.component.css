@@ -5,7 +5,7 @@
 .title-container h1 {
     font-family: 'Gabarito', sans-serif;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-main);
     margin: 0;
 }
 
@@ -18,7 +18,7 @@
 }
 
 mat-header-cell {
-    background-color: #f8fafc;
+    background-color: transparent;
     color: #475569;
     font-weight: 700;
     font-size: 14px;

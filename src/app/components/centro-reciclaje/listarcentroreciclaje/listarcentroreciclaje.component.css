@@ -126,7 +126,7 @@ h1 {
 .search-bar {
   display: flex;
   align-items: center;
-  background: white;
+  background: var(--bg-card);
   border-radius: 30px;
   padding: 8px 16px;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
@@ -220,7 +220,7 @@ h1 {
     right: -10px;
     display: flex;
     gap: 8px;
-    background-color: white;
+    background-color: var(--bg-card);
     padding: 6px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -266,4 +266,5 @@ mat-paginator {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+
 

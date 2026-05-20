@@ -127,3 +127,8 @@ mat-paginator {
     border-radius: 10px;
 }
 
+
+.empty-state { text-align: center; padding: 40px; border-radius: 12px; margin-top: 20px; background-color: var(--bg-card); color: var(--text-main); }
+.empty-icon { font-size: 64px; height: 64px; width: 64px; color: #27ae60; margin-bottom: 20px; }
+.btn-start { margin-top: 20px; background-color: #27ae60; color: white; border-radius: 20px; padding: 8px 24px; text-decoration: none; display: inline-block; font-weight: bold; }
+.btn-start:hover { background-color: #1e8449; color: white; }

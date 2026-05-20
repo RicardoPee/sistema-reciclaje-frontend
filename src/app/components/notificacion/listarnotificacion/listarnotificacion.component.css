@@ -5,7 +5,7 @@
 .inbox-wrapper {
   max-width: 800px;
   margin: 60px auto 40px; /* Centrado usando auto */
-  background: white;
+  background: var(--bg-card);
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   overflow: hidden;
@@ -40,7 +40,7 @@
 .header-left h1 {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--text-main);
   margin: 0 0 4px;
 }
 
@@ -193,6 +193,7 @@
 
 /* Paginador custom */
 .inbox-paginator {
-  background: white;
+  background: var(--bg-card);
   border-top: 1px solid #e2e8f0;
 }
+

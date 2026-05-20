@@ -1,6 +1,6 @@
 .container {
     padding: 20px 40px;
-    background-color: #f8fafc;
+    background-color: transparent;
     min-height: calc(100vh - 80px);
     font-family: 'Inter', sans-serif;
 }
@@ -13,7 +13,7 @@
 .title-container h1 {
     font-family: 'Gabarito', sans-serif;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--text-main);
     margin: 0;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .chart-container {
-    background: white;
+    background: var(--bg-card);
     max-width: 1000px;
     height: 600px;
     margin: 0 auto;
@@ -31,3 +31,5 @@
     border-radius: 20px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
+
+

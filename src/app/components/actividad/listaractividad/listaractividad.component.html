@@ -1,7 +1,15 @@
 <div class="page-container">
   <h1>Actividades</h1>
 
-  <div class="cards-container">
+  <!-- Estado vacío -->
+  <div class="empty-state" *ngIf="actividades.length === 0">
+    <mat-icon class="empty-icon">eco</mat-icon>
+    <h2>¡Aún no tienes actividades!</h2>
+    <p>Empieza a reciclar hoy mismo y ayuda a salvar el planeta.</p>
+    <a routerLink="nuevo" mat-raised-button color="primary" class="btn-start">Comenzar a Reciclar</a>
+  </div>
+
+  <div class="cards-container" *ngIf="actividades.length > 0">
     <mat-card *ngFor="let element of pagedData" class="card">
 
       <!-- Badge de estado -->

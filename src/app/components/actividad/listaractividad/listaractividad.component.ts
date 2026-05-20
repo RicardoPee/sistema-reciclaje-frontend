@@ -26,8 +26,15 @@ export class ListaractividadComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
      this.role = this.lS.showRole();
+     const userId = parseInt(this.lS.getID() || '0');
+
     // Obtener las actividades
     this.aS.list().subscribe((data) => {
+      // Filtrar si es CLIENTE
+      if (this.role === 'CLIENTE') {
+         data = data.filter(act => act.u && act.u.id_user === userId);
+      }
+      
       // Ordenar actividades de la más reciente a la más antigua
       this.actividades = data.sort((a,b) => new Date(b.fecha_recepcion).getTime() - new Date(a.fecha_recepcion).getTime());
       this.updatePagedData();
