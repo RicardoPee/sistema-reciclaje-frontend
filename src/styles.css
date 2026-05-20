@@ -1,15 +1,46 @@
+/* ==============================================================
+   VARIABLES CSS GLOBALES (LIGHT / DARK MODE)
+   ============================================================== */
+:root {
+  --bg-main: #f1f5f9;
+  --text-main: #334155;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --table-header-bg: #f8fafc;
+  --table-header-text: #475569;
+  --table-row-hover: #f0fdf4;
+  --nav-bg: #ffffff;
+  --input-bg: #ffffff;
+  --text-muted: #1e293b;
+}
 
-html, body { height: 10%; }
+[data-theme="dark"] {
+  --bg-main: #0f172a;
+  --text-main: #f8fafc;
+  --bg-card: #1e293b;
+  --border-color: #334155;
+  --table-header-bg: #0f172a;
+  --table-header-text: #cbd5e1;
+  --table-row-hover: #334155;
+  --nav-bg: #1e293b;
+  --input-bg: #1e293b;
+  --text-muted: #e2e8f0;
+}
+
+html, body { height: 100%; }
 body { 
     margin: 0; 
-    font-family: 'Gabarito', sans-serif;
+    font-family: 'Gabarito', Roboto, "Helvetica Neue", sans-serif; 
+    background-color: var(--bg-main); 
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 ::-webkit-scrollbar{
     width: 18px;
 }
-
 ::-webkit-scrollbar-track{
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bg-card);
 }
 ::-webkit-scrollbar-thumb{
     background: rgb(133, 202, 100);
@@ -30,74 +61,75 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #ffffff;
+    background-color: var(--nav-bg);
     height: 7vh;
     z-index: 2;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo-inicio {
-    width: 250px; /* Ajusta el ancho según sea necesario */
-    height: 90px; /* Ajusta la altura según sea necesario */
+    width: 250px;
+    height: 90px;
     background-image: url('https://i.ibb.co/X8Z8g18/logo.png');
-    background-size: 220px; /* Mantiene la proporción de la imagen */
-    background-position: center; /* Centra la imagen en el div */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: rgb(133, 202, 122); /* Color de fondo verde */
-    border-radius: 10px; /* Bordes redondeados opcionales */
-    position: relative; /* Para permitir el uso de pseudo-elementos */
+    background-size: 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(133, 202, 122);
+    border-radius: 10px;
+    position: relative;
     z-index: 3; 
 }
 
 /* Sección de bienvenida */
 .welcome-section {
-    position: relative; /* Asegura que el pseudo-elemento esté posicionado relativo a este contenedor */
+    position: relative;
     height: 100vh;
-    background-image: url('https://i.ibb.co/cF8gXH5/background.png'); /* Imagen de fondo */
+    background-image: url('https://i.ibb.co/cF8gXH5/background.png');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden; /* Evita que el contenido desborde el contenedor */
+    overflow: hidden;
 }
 
 .welcome-section::before {
     content: '';
-    position: absolute; /* Posiciona el pseudo-elemento absolutamente */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad */
-    z-index: 1; /* Asegura que el fondo negro esté encima de la imagen de fondo */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .welcome-text {
-    position: relative; /* Para asegurar que el texto esté sobre el fondo negro */
+    position: relative;
     padding: 2rem;
     border-radius: 10px;
     color: rgb(255, 255, 255);
-    z-index: 2; /* Asegura que el texto esté por encima del fondo negro */
+    z-index: 2;
 }
 
-h1, h2 { /* Asegúrate de que el estilo de la letra no cambie */
+h1, h2 { 
     font-family: 'Gabarito', sans-serif;
 }
 
 h1 {
-    font-size: 4rem; /* Ajustar el tamaño según lo desees */
+    font-size: 4rem;
     margin-bottom: 0.5rem;
 }
 
 h2 {
-    font-size: 1.5rem; /* Ajustar el tamaño según lo desees */
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
     font-weight:lighter;
-
 }
 
-/* Botón de inicio de sesión */
+/* Botones */
 .login-button {
     padding: 0.5rem 1rem;
     background-color: rgb(90, 181, 76);
@@ -110,8 +142,8 @@ h2 {
 
 .register-button {
     padding: 0.5rem 2rem;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--bg-card);
+    color: var(--text-main);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -119,52 +151,45 @@ h2 {
     font-weight: bold; 
 }
 
-
-html, body { height: 100%; }
-body { 
-    margin: 0; 
-    font-family: 'Gabarito', Roboto, "Helvetica Neue", sans-serif; 
-    background-color: #f1f5f9; /* El famoso gris claro/azulado que genera profundidad */
-    color: #334155;
-}
-
 /* ==============================================================
    HACK MATERIAL GLOBAL PARA TABLAS Y TARJETAS EN TODA LA APP 
    ============================================================== */
 
-/* Limpiar fondos transparentes y forzar que las tablas y cards sean blancas con sombras suaves */
+/* Limpiar fondos transparentes y forzar que las tablas y cards usen variables */
 mat-card, .mat-card, .container > table, table.mat-elevation-z8, table.mat-mdc-table, .mat-mdc-card {
-    background-color: #ffffff !important;
+    background-color: var(--bg-card) !important;
     border-radius: 16px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
     overflow: hidden;
     margin: 10px auto;
+    color: var(--text-main) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Cambiar las cabeceras de todas tus tablas a algo moderno en lugar del azul o gris */
+/* Cambiar las cabeceras de todas tus tablas */
 th.mat-header-cell, th.mat-mdc-header-cell, th {
-    background-color: #f8fafc !important;
-    color: #475569 !important;
+    background-color: var(--table-header-bg) !important;
+    color: var(--table-header-text) !important;
     text-transform: uppercase !important;
     font-size: 0.75rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.5px;
     padding: 16px !important;
-    border-bottom: 2px solid #e2e8f0 !important;
+    border-bottom: 2px solid var(--border-color) !important;
 }
 
 /* Redondear y separar los datos */
 td.mat-cell, td.mat-mdc-cell, td {
-    border-bottom: 1px solid #f1f5f9 !important;
+    border-bottom: 1px solid var(--border-color) !important;
     padding: 16px !important;
-    color: #1e293b !important;
+    color: var(--text-muted) !important;
     font-size: 0.95rem !important;
 }
 
 /* Hover súper sutil para cada fila en las tablas */
 tr.mat-row:hover, tr.mat-mdc-row:hover, tr:hover td {
-    background-color: #f0fdf4 !important;
+    background-color: var(--table-row-hover) !important;
     transition: background-color 0.2s ease;
 }
 
@@ -173,4 +198,16 @@ mat-paginator {
     background-color: transparent !important;
     border-top: none !important;
     margin-top: 10px;
+    color: var(--text-main) !important;
+}
+
+/* Fix Inputs para Angular Material en modo oscuro */
+.mat-mdc-form-field-flex {
+    background-color: var(--input-bg) !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--input-bg) !important;
+}
+.mat-mdc-input-element, .mat-mdc-select-value-text {
+    color: var(--text-main) !important;
 }

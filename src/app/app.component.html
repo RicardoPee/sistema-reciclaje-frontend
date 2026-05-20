@@ -90,6 +90,13 @@
             <button mat-menu-item routerLink="/noticias/nuevo" >Registrar</button>
         </mat-menu>
 
+        <!-- Botón de Modo Oscuro -->
+        <div class="theme-toggle" style="margin-right: 15px;">
+            <button mat-icon-button (click)="toggleTheme()" style="color: var(--text-main);" title="Cambiar Tema">
+                <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+            </button>
+        </div>
+
          <!-- Billetera Puntos (Gamificación) -->
          <div class="points-badge" *ngIf="isCliente()" style="margin-right: 15px;">
             <button mat-button style="color: green; font-weight: bold; background-color: #e8f5e9; border-radius: 20px;">

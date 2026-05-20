@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
   isWelcomePage: boolean = false;
   userId: string | null = null;
   puntosUsuario: number = 0;
+  isDarkMode: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router, private usuarioService: UsuarioService) {
     // Verifica la ruta actual para mostrar u ocultar elementos
@@ -71,10 +72,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Cargar preferencia de modo oscuro
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.isDarkMode = true;
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
     this.cargarPuntosUsuario();
     this.usuarioService.getPuntosCambio().subscribe(puntos => {
       this.puntosUsuario = puntos;
     });
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    }
   }
 
   cargarPuntosUsuario() {
