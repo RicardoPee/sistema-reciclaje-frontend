@@ -84,14 +84,9 @@ export class HomeComponent implements OnInit {
       hroles: [''],
     });
 
-      // Asignar automáticamente el rol "Cliente" al formulario
-    this.rS.list().subscribe((data) => {
-      const clienteRol = data.find(rol => rol.nombreRol === 'CLIENTE');
-      if (clienteRol) {
-        this.form.patchValue({
-          hroles: clienteRol.idRol
-        });
-      }
+    // Asignar automáticamente el rol "Cliente" (ID 2) al formulario de forma directa
+    this.form.patchValue({
+      hroles: 2
     });
   }
 
