@@ -6,7 +6,7 @@
 
 .title-container h1 {
   font-size: 1.8rem;
-  color: #2c3e50;
+  color: var(--text-main);
   margin-bottom: 25px;
 }
 

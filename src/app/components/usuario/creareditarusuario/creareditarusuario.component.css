@@ -1,6 +1,6 @@
 .container {
     padding: 60px;
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     padding: 20px;
     border-radius: 10px;
     max-width: 600px;
@@ -44,7 +44,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    background-color: #ffffff;
+    background-color: var(--bg-card);
     padding: 30px;
     border-radius: 10px;
   }

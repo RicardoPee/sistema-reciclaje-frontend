@@ -14,7 +14,7 @@
 .page-header h1 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -46,7 +46,7 @@
 }
 
 .claim-card {
-  background: #fff;
+  background: var(--bg-card);
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
   padding: 20px;
@@ -67,7 +67,7 @@
 .claim-icon mat-icon { color: #27ae60; font-size: 26px; width: 26px; height: 26px; }
 
 .claim-info { flex: 1; }
-.claim-reward { margin: 0 0 6px 0; font-size: 0.95rem; font-weight: 700; color: #2c3e50; }
+.claim-reward { margin: 0 0 6px 0; font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
 
 .claim-meta { display: flex; gap: 12px; flex-wrap: wrap; }
 .meta-item { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: #636e72; }

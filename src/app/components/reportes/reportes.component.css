@@ -8,7 +8,7 @@
 .dashboard-header h1 {
   font-family: 'Gabarito', sans-serif;
   font-size: 2.8rem;
-  color: #2c3e50;
+  color: var(--text-main);
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -33,7 +33,7 @@
 
 /* En la lógica de Tabs, cada widget toma todo el ancho y alto que quiera */
 .widget.full {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 35px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -71,7 +71,7 @@
 
 /* Estilos de customización visual para Angular Material Tabs (Opcional) */
 ::ng-deep .mat-mdc-tab-labels {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   margin-bottom: 20px;
@@ -81,5 +81,5 @@
   font-size: 1.1rem;
   font-weight: 500;
   font-family: 'Gabarito', sans-serif;
-  color: #2c3e50;
+  color: var(--text-main);
 }

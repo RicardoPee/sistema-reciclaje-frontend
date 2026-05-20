@@ -204,7 +204,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #fff;
+  background: var(--bg-card);
   color: #1a2c20;
   transform: translateY(-3px);
   box-shadow: 0 15px 35px rgba(255, 255, 255, 0.1);
@@ -383,3 +383,4 @@ body {
   .team-tags { justify-content: center; }
   .nav-links { display: none; }
 }
+
