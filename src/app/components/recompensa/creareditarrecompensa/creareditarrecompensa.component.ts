@@ -126,6 +126,6 @@ export class CreareditarrecompensaComponent implements OnInit {
 
   /* Función para verificar si el rol es admin
     isAdmin(): boolean {
-      return this.role === 'ADMI';
+      return this.role === 'ADMIN';
     } */
 }

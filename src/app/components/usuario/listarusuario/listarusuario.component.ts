@@ -45,7 +45,7 @@ export class ListarusuarioComponent implements OnInit {
     const userId = this.lS.getID(); 
     this.role = this.lS.showRole(); 
   
-    if (this.role === 'ADMI') {
+    if (this.role === 'ADMIN') {
       this.uS.list().subscribe((usuarios) => {
         this.usuarios = usuarios;
         this.updatePagedData();
@@ -87,7 +87,7 @@ export class ListarusuarioComponent implements OnInit {
   }
 
   isAdmi(): boolean {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
   getRango(puntos: number): string {

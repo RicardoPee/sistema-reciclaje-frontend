@@ -73,6 +73,7 @@ export class ListarreclamacionesComponent implements OnInit, AfterViewInit {
   }
 
   isAdmi() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 }
+

@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
   isCliente() {
@@ -112,3 +112,4 @@ export class AppComponent implements OnInit {
     console.log("ID del usuario:", this.userId);
   }
 }
+

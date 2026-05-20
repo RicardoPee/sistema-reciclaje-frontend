@@ -106,6 +106,7 @@ export class ListarnotificacionComponent implements OnInit {
   }
 
   isAdmi(): boolean {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 }
+

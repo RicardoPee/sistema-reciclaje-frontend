@@ -142,6 +142,7 @@ export class CreaeditaactividadComponent implements OnInit {
     }
   }
 
-  isAdmi() { return this.role === 'ADMI'; }
+  isAdmi() { return this.role === 'ADMIN'; }
   isCliente() { return this.role === 'CLIENTE'; }
 }
+

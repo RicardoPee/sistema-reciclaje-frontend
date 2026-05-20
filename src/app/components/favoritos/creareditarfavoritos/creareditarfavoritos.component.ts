@@ -100,7 +100,7 @@ export class CreareditarfavoritosComponent implements OnInit {
   }
   navigateAfterAction(): void {
     const userRole = this.lS.showRole(); // Obtén el rol del usuario desde el servicio de login
-    if (userRole === 'ADMI') {
+    if (userRole === 'ADMIN') {
       this.router.navigate(['favoritos']); // Navegar al componente de listar reclamaciones
     } else if (userRole === 'CLIENTE') {
       this.router.navigate(['noticias']); // Navegar al componente de noticias
@@ -122,7 +122,8 @@ export class CreareditarfavoritosComponent implements OnInit {
   }
 
   isAdmi(): boolean {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
 }
+

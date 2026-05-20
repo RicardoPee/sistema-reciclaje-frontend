@@ -140,7 +140,7 @@ export class CreareditarnoticiasComponent implements OnInit {
   }
 
   isAdmi() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
   compareObjects(o1: any, o2: any): boolean {
@@ -151,3 +151,4 @@ export class CreareditarnoticiasComponent implements OnInit {
     return item.idCentroReciclaje;
   }
 }
+

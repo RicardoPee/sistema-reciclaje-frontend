@@ -74,6 +74,7 @@ export class ListarnoticiasComponent implements OnInit {
   }
 
   isAdmin() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 }
+

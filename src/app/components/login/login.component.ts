@@ -37,7 +37,7 @@ export class LoginComponent  {
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
         const role = this.loginService.showRole();
-        if (role === 'ADMI') {
+        if (role === 'ADMIN') {
           this.router.navigate(['usuarios']);
         } else if (role === 'EMPLEADO') {
           this.router.navigate(['empleado/pendientes']);
@@ -64,3 +64,4 @@ export class LoginComponent  {
     this.hidePassword = !this.hidePassword; 
   }
 }
+

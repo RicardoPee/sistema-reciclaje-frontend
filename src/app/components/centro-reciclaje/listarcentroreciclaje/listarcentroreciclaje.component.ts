@@ -249,7 +249,7 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
   }
 
   isAdmi() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
   isCliente() {
@@ -266,3 +266,4 @@ export class ListarcentroreciclajeComponent implements OnInit, AfterViewInit {
     return baseOptions;
   }
 }
+

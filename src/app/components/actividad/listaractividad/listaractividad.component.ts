@@ -58,7 +58,7 @@ export class ListaractividadComponent implements OnInit, AfterViewInit {
     });
   }
    isAdmi(){
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 
   getIconForActivity(tipo: string): string {
@@ -77,3 +77,4 @@ export class ListaractividadComponent implements OnInit, AfterViewInit {
     return 'recycling';
   }
 }
+

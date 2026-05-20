@@ -69,6 +69,7 @@ export class ListarfavoritosComponent implements OnInit {
   }
 
   isAdmi() {
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 }
+

@@ -116,7 +116,7 @@ export class CreareditarreclamacionesComponent {
 
   navigateAfterAction(): void {
     const userRole = this.lS.showRole(); // Obtén el rol del usuario desde el servicio de login
-    if (userRole === 'ADMI') {
+    if (userRole === 'ADMIN') {
       this.router.navigate(['reclamaciones']); // Navegar al componente de listar reclamaciones
     } else if (userRole === 'CLIENTE') {
       this.router.navigate(['noticias']); // Navegar al componente de noticias
@@ -138,6 +138,7 @@ export class CreareditarreclamacionesComponent {
   }
 
   isAdmi(){
-    return this.role === 'ADMI';
+    return this.role === 'ADMIN';
   }
 }
+
