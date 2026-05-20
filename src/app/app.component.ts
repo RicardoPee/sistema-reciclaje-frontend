@@ -15,6 +15,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatBadgeModule } from '@angular/material/badge';
+import { WebsocketService } from './services/websocket.service';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { CommonModule } from '@angular/common';
 
@@ -39,7 +42,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     NgxMaterialTimepickerModule,
     CommonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatBadgeModule
   ],
 
   templateUrl: './app.component.html',
@@ -51,8 +56,15 @@ export class AppComponent implements OnInit {
   userId: string | null = null;
   puntosUsuario: number = 0;
   isDarkMode: boolean = false;
+  notificacionesNoLeidas: number = 0;
 
-  constructor(private loginService: LoginService, private router: Router, private usuarioService: UsuarioService) {
+  constructor(
+    private loginService: LoginService, 
+    private router: Router, 
+    private usuarioService: UsuarioService,
+    private wsService: WebsocketService,
+    private snackBar: MatSnackBar
+  ) {
     // Verifica la ruta actual para mostrar u ocultar elementos
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -83,6 +95,28 @@ export class AppComponent implements OnInit {
     this.usuarioService.getPuntosCambio().subscribe(puntos => {
       this.puntosUsuario = puntos;
     });
+
+    // Conectar WebSocket si el usuario está logueado
+    if (this.verificar()) {
+      const idStr = this.loginService.getID();
+      if (idStr) {
+        this.wsService.connect(parseInt(idStr));
+      }
+    }
+
+    // Escuchar notificaciones en tiempo real
+    this.wsService.notifications$.subscribe(msg => {
+      this.notificacionesNoLeidas++;
+      // Mostrar Toast o alerta inferior
+      this.snackBar.open(msg, 'Cerrar', {
+        duration: 5000,
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom',
+        panelClass: ['success-snackbar']
+      });
+      // Opcional: Recargar puntos automáticamente
+      this.cargarPuntosUsuario();
+    });
   }
 
   toggleTheme() {
@@ -106,6 +140,7 @@ export class AppComponent implements OnInit {
   }
 
   cerrar() {
+    this.wsService.disconnect();
     sessionStorage.clear();
   }
 
